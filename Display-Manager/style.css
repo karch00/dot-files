@@ -2,7 +2,7 @@
     --darken-bg: rgba(0,0,0,0.45);
     --darken-bg2: rgba(0,0,0,0.5);
     --darken-bg3 : rgba(0,0,0,0.15);
-    --light-border: rgba(256,256,256,0.75) 2px double;
+    --light-border: rgba(256,256,256,0.75) 2px solid;
     --wp: url("WP.png");
 }
 body {
@@ -152,11 +152,11 @@ body {
 
     cursor: pointer;
 
-    transition: ease-in-out all 0.2s;
+    transition: ease-in-out 0.2s;
 }
 #login-button:hover{
     svg{
-        transform: scale(1.1);
+        transform: scale(1.15);
     }
 }
 #login-button svg {
@@ -169,6 +169,7 @@ body {
     margin-top:2px;
     pointer-events: none;
 
+    transition: ease-in-out 0.2s;
     path{
         stroke:#efefef;
         stroke-width:0.1rem;
@@ -212,10 +213,11 @@ body {
     transition: ease-in-out background 0.2s;
 }
 .utility-button:hover{
-    background: var(--darken-bg3);
-}
-.utility-button svg{
-    path{
-        stroke:#efefef;
+    img{
+        transform: scale(1.15);
     }
+}
+.utility-button img{
+    width: 25px;
+    height: 25px;
 }

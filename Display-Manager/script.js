@@ -43,14 +43,9 @@ function updateClockAndDate() {
     document.getElementById("time").textContent = time;
     document.getElementById("date").textContent = date;
 }
-
 window.onload = function() {
     updateClockAndDate();
     setInterval(updateClockAndDate, 1000);
-
-    lightdm.sessions.forEach(session => {
-        document.getElementById("debug").textContent = document.getElementById("debug").textContent + `${session.key} - ${session.name}`;
-    })
 }
 
 
