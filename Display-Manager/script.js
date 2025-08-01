@@ -49,7 +49,7 @@ window.onload = function() {
     setInterval(updateClockAndDate, 1000);
 
     lightdm.sessions.forEach(session => {
-        document.getElementById("debug").textContent = document.getElementById("debug").textContent + session;
+        document.getElementById("debug").textContent = document.getElementById("debug").textContent + `${session.key} - ${session.name}`;
     })
 }
 
