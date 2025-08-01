@@ -1,434 +1,338 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import SddmComponents 2.0
+import QtQuick
+import QtQuick.Window
+import QtQuick.Controls
+import QtGraphicalEffects 1.12
 
-Rectangle {
-    id: root
+Item {
+    id: canvas
     width: 1920
     height: 1080
-    
-    // Background with wallpaper
+
+    property string username: "karch" // Make permanent
+    property string avatar: "images/PF.png" // Change sddm
+
+    // Load
+    Component.onCompleted: {
+        auth.user = "karch"
+    }
+
+    // Wallpaper
     Image {
-        id: background
-        anchors.fill: parent
-        source: "WP.png"
-        fillMode: Image.PreserveAspectCrop
+        id: wP
+        x: 0
+        y: 0
+        source: "images/WP.png"
+        fillMode: Image.PreserveAspectFit
     }
-    
-    // Dark overlay
-    Rectangle {
-        anchors.fill: parent
-        color: "black"
-        opacity: 0.45
+
+    // Clock and date
+    Text {
+        id: clock
+        x: 724
+        y: 174
+        color: "#efefef"
+        text: Qt.formatTime(new Date(), "hh:mm:ss")
+        font.pixelSize: 98
+        horizontalAlignment: Text.AlignHCenter
+        font.styleName: "SemiBold"
+        font.family: "JetBrains Mono"
     }
-    
-    Column {
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: -100
-        spacing: 0
-        
-        // Clock
-        Text {
-            id: timeLabel
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.family: "JetBrains Mono"
-            font.pixelSize: 80
-            color: "#efefef"
-            text: Qt.formatTime(new Date(), "hh:mm:ss")
-            
-            Timer {
-                interval: 1000
-                repeat: true
-                running: true
-                onTriggered: {
-                    timeLabel.text = Qt.formatTime(new Date(), "hh:mm:ss")
-                    dateLabel.text = Qt.formatDate(new Date(), "dd/MM/yyyy")
-                }
-            }
-        }
-        
-        // Date
-        Text {
-            id: dateLabel
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.family: "JetBrains Mono"
-            font.pixelSize: 24
-            color: "#efefef"
-            text: Qt.formatDate(new Date(), "dd/MM/yyyy")
-            
-            // Add some spacing
-            anchors.topMargin: -16
-        }
-        
-        // Spacer
-        Item {
-            width: 1
-            height: 80
-        }
-        
-        // Main login container
-        Rectangle {
-            id: loginContainer
-            width: 500
-            height: 300
-            anchors.horizontalCenter: parent.horizontalCenter
-            
-            color: "transparent"
-            border.color: "rgba(255,255,255,0.75)"
-            border.width: 2
-            radius: 15
-            
-            // Background with transparency
-            Rectangle {
-                anchors.fill: parent
-                color: "black"
-                opacity: 0.45
-                radius: 15
-            }
-            
-            Column {
-                anchors.centerIn: parent
-                spacing: 20
-                
-                // Welcome text
-                Text {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    font.family: "JetBrains Mono"
-                    font.pixelSize: 24
-                    color: "#efefef"
-                    text: "-Welcome back-"
-                }
-                
-                // Profile section
-                Column {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    spacing: -16
-                    
-                    // Profile picture
-                    Rectangle {
-                        id: profilePic
-                        width: 80
-                        height: 80
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        
-                        color: "transparent"
-                        border.color: "rgba(255,255,255,0.75)"
-                        border.width: 2
-                        radius: 8
-                        
-                        Image {
-                            anchors.fill: parent
-                            anchors.margins: 2
-                            source: "PF.png"
-                            fillMode: Image.PreserveAspectFit
-                        }
-                    }
-                    
-                    // Profile name
-                    Text {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        font.family: "JetBrains Mono"
-                        font.pixelSize: 20
-                        font.weight: Font.Bold
-                        color: "#efefef"
-                        text: "karch"
-                    }
-                }
-                
-                // Login form
-                Row {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    spacing: 0
-                    
-                    // Password input
-                    Rectangle {
-                        width: 100
-                        height: 30
-                        color: "black"
-                        opacity: 0.5
-                        border.color: "rgba(255,255,255,0.75)"
-                        border.width: 2
-                        radius: 10
-                        
-                        // Remove right border and radius
-                        Rectangle {
-                            anchors.right: parent.right
-                            anchors.top: parent.top
-                            anchors.bottom: parent.bottom
-                            width: 2
-                            color: "black"
-                            opacity: 0.5
-                        }
-                        
-                        TextInput {
-                            id: passwordInput
-                            anchors.fill: parent
-                            anchors.margins: 8
-                            anchors.rightMargin: 10
-                            
-                            font.family: "JetBrains Mono"
-                            font.pixelSize: 16
-                            color: "#efefef"
-                            echoMode: TextInput.Password
-                            focus: true
-                            
-                            selectByMouse: true
-                            selectionColor: "rgba(255,255,255,0.3)"
-                            
-                            onAccepted: {
-                                sddm.login(sddm.userModel.lastUser, passwordInput.text, sessionCombo.currentIndex)
-                            }
-                            
-                            Keys.onPressed: {
-                                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                    sddm.login(sddm.userModel.lastUser, passwordInput.text, sessionCombo.currentIndex)
-                                }
-                            }
-                        }
-                    }
-                    
-                    // Login button
-                    Rectangle {
-                        width: 32
-                        height: 30
-                        color: "black"
-                        opacity: 0.5
-                        border.color: "rgba(255,255,255,0.75)"
-                        border.width: 2
-                        radius: 10
-                        
-                        // Remove left border and radius
-                        Rectangle {
-                            anchors.left: parent.left
-                            anchors.top: parent.top
-                            anchors.bottom: parent.bottom
-                            width: 2
-                            color: "black"
-                            opacity: 0.5
-                        }
-                        
-                        // Arrow SVG
-                        Canvas {
-                            id: arrow
-                            anchors.centerIn: parent
-                            width: 25
-                            height: 25
-                            
-                            property real scale: loginMouseArea.containsMouse ? 1.15 : 1.0
-                            transform: Scale { 
-                                xScale: arrow.scale
-                                yScale: arrow.scale
-                                origin.x: arrow.width/2
-                                origin.y: arrow.height/2
-                            }
-                            
-                            Behavior on scale {
-                                NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
-                            }
-                            
-                            onPaint: {
-                                var ctx = getContext("2d")
-                                ctx.strokeStyle = "#efefef"
-                                ctx.lineWidth = 1.5
-                                ctx.beginPath()
-                                
-                                // Draw arrow path (simplified version of your SVG)
-                                ctx.moveTo(8, 12)
-                                ctx.lineTo(17, 12)
-                                ctx.moveTo(13, 8)
-                                ctx.lineTo(17, 12)
-                                ctx.lineTo(13, 16)
-                                
-                                ctx.stroke()
-                            }
-                        }
-                        
-                        MouseArea {
-                            id: loginMouseArea
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
-                            
-                            onClicked: {
-                                sddm.login(sddm.userModel.lastUser, passwordInput.text, sessionCombo.currentIndex)
-                            }
-                        }
-                    }
-                }
-                
-                // Error message
-                Text {
-                    id: errorMessage
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    font.family: "JetBrains Mono"
-                    font.pixelSize: 12
-                    color: "red"
-                    text: "Incorrect password"
-                    visible: false
-                }
-            }
-        }
-        
-        // Spacer
-        Item {
-            width: 1
-            height: 16
-        }
-        
-        // Utility buttons
-        Row {
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 16
-            
-            // Shutdown button
-            Rectangle {
-                width: 40
-                height: 40
-                color: "black"
-                opacity: 0.45
-                border.color: "rgba(255,255,255,0.75)"
-                border.width: 2
-                radius: 10
-                
-                Image {
-                    id: shutdownIcon
-                    anchors.centerIn: parent
-                    width: 25
-                    height: 25
-                    source: "assets/shutdown.png"
-                    
-                    property real scale: shutdownMouseArea.containsMouse ? 1.15 : 1.0
-                    transform: Scale { 
-                        xScale: shutdownIcon.scale
-                        yScale: shutdownIcon.scale
-                        origin.x: shutdownIcon.width/2
-                        origin.y: shutdownIcon.height/2
-                    }
-                    
-                    Behavior on scale {
-                        NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
-                    }
-                }
-                
-                MouseArea {
-                    id: shutdownMouseArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: sddm.powerOff()
-                }
-            }
-            
-            // Restart button
-            Rectangle {
-                width: 40
-                height: 40
-                color: "black"
-                opacity: 0.45
-                border.color: "rgba(255,255,255,0.75)"
-                border.width: 2
-                radius: 10
-                
-                Image {
-                    id: restartIcon
-                    anchors.centerIn: parent
-                    width: 25
-                    height: 25
-                    source: "assets/restart.png"
-                    
-                    property real scale: restartMouseArea.containsMouse ? 1.15 : 1.0
-                    transform: Scale { 
-                        xScale: restartIcon.scale
-                        yScale: restartIcon.scale
-                        origin.x: restartIcon.width/2
-                        origin.y: restartIcon.height/2
-                    }
-                    
-                    Behavior on scale {
-                        NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
-                    }
-                }
-                
-                MouseArea {
-                    id: restartMouseArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: sddm.reboot()
-                }
-            }
-            
-            // Suspend button
-            Rectangle {
-                width: 40
-                height: 40
-                color: "black"
-                opacity: 0.45
-                border.color: "rgba(255,255,255,0.75)"
-                border.width: 2
-                radius: 10
-                
-                Image {
-                    id: suspendIcon
-                    anchors.centerIn: parent
-                    width: 25
-                    height: 25
-                    source: "assets/suspend.png"
-                    
-                    property real scale: suspendMouseArea.containsMouse ? 1.15 : 1.0
-                    transform: Scale { 
-                        xScale: suspendIcon.scale
-                        yScale: suspendIcon.scale
-                        origin.x: suspendIcon.width/2
-                        origin.y: suspendIcon.height/2
-                    }
-                    
-                    Behavior on scale {
-                        NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
-                    }
-                }
-                
-                MouseArea {
-                    id: suspendMouseArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: sddm.suspend()
-                }
-            }
-        }
+    Text {
+        id: clockdate
+        x: 865
+        y: 285
+        color: "#efefef"
+        text: Qt.formatDate(new Date(), "dd/MM/yyyy")
+        font.pixelSize: 32
+        font.styleName: "SemiBold"
+        font.family: "JetBrains Mono"
     }
-    
-    // Hidden session combo (you can make this visible if needed)
-    ComboBox {
-        id: sessionCombo
-        visible: false
-        model: sessionModel
-        currentIndex: sessionModel.lastIndex
-    }
-    
-    // Handle login attempts
-    Connections {
-        target: sddm
-        function onLoginFailed() {
-            errorMessage.visible = true
-            passwordInput.text = ""
-            passwordInput.focus = true
-            
-            // Hide error after 3 seconds
-            errorTimer.start()
-        }
-        
-        function onLoginSucceeded() {
-            errorMessage.visible = false
-        }
-    }
-    
     Timer {
-        id: errorTimer
-        interval: 3000
-        onTriggered: {
-            errorMessage.visible = false
-        }
+        id: clocktimer
+        triggeredOnStart: true
+        running: true
+        repeat: true
+        interval: 1000
+        onTriggered: clock.text = Qt.formatTime(new Date(), "hh:mm:ss")
     }
+    Timer {
+        id: datetimer
+        triggeredOnStart: true
+        running: true
+        repeat: true
+        interval: 1000
+        onTriggered: clockdate.text = Qt.formatDate(new Date(), "dd/MM/yyyy")
+    }
+
+    // Login panel
+    Rectangle {
+        id: loginpanel
+        width: 600
+        height: 400
+        color: "#7c000000"
+        radius: 10
+        border.color: "#96ffffff"
+        border.width: 2
+        z: 1
+        x: 660
+        y: 409
+
+        // Welcome
+        Text {
+            id: welcometext
+            x: 162
+            y: 28
+            color: "#efefef"
+            text: qsTr("Welcome back")
+            font.pixelSize: 38
+            font.styleName: "Bold"
+            font.family: "JetBrains Mono"
+        }
+
+        // Avatar
+        Image {
+            id: avatarpic
+            x: 236
+            y: 91
+            width: 128
+            height: 128
+            source: avatar
+            fillMode: Image.PreserveAspectCrop
+            layer.enabled: true
+        }
+
+        // Username
+        Text {
+            id: username
+            x: 265
+            y: 225
+            color: "#efefef"
+            text: username
+            font.pixelSize: 24
+            font.styleName: "ExtraBold"
+            font.family: "JetBrains Mono"
+        }
+
+        // Password
+        Rectangle {
+            id: passwordcontainer
+            x: 190
+            y: 289
+            width: 220
+            height: 35
+            color: "#68000000"
+            radius: 5
+            border.color: "#96ffffff"
+            border.width: 1.5
+
+            TextInput {
+                id: passwordinput
+                x: 10
+                y: 8
+                width: 202
+                height: 25
+                color: "#efefef"
+                font.pixelSize: 24
+                maximumLength: 14
+                font.family: "JetBrains Mono"
+                echoMode: TextInput.Password
+
+                HoverHandler {
+                    cursorShape: Qt.IBeamCursor
+                }
+
+                onAccepted: {
+                    auth.password = passwordinput.text
+                    auth.login()
+                }
+            }
+        }
+
+        // Incorrect Password Text
+        Text {
+            id: incorrectpassword
+            x: 237
+            y: 330
+            color: "#ff0000"
+            text: qsTr("Incorrect password")
+            font.pixelSize: 12
+            font.family: "JetBrains Mono"
+            visible: auth.failed
+        }
+
+    // Login panel blur
+    }
+    ShaderEffectSource {
+        id: blursource
+        sourceItem: wP
+        sourceRect: Qt.rect(loginpanel.x, loginpanel.y, loginpanel.width,
+                            loginpanel.height)
+        live: true
+        hideSource: false
+        width: loginpanel.width
+        height: loginpanel.height
+        x: 660
+        y: 409
+        z: 0
+    }
+    Blur {
+        id: loginblur
+        anchors.fill: blursource
+        source: blursource
+        radius: 32
+        samples: 32
+        z: 1
+    }
+
+    // Shutdown button
+    Button {
+        id: shutdownbutton
+        x: 660 + 20
+        y: 815
+        width: 50
+        height: 60
+        flat: true
+
+        contentItem: Item {
+            x: 0
+            y: 6
+            width: 50
+            height: 48
+
+            Image {
+                id: shutdownimage
+                anchors.centerIn: parent
+
+                source: "images/shutdown.svg"
+                width: 30
+                height: 30
+
+
+                scale: shutdownarea.hovered ? 1.1 : 1
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: 150
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+        }
+
+        HoverHandler {
+            id: shutdownarea
+            cursorShape: Qt.PointingHandCursor
+        }
+
+        background: Rectangle {
+            color: "#68000000"
+            radius: 5
+            border.color: "#96ffffff"
+            border.width: 2
+        }
+
+        onClicked: sddm.powerOff()
+    }
+
+    // Restart Button
+    Button {
+        id: restartbutton
+        x: 750
+        y: 815
+        width: 50
+        height: 60
+        flat: true
+
+        contentItem: Item {
+            x: 0
+            y: 6
+            width: 50
+            height: 48
+
+            Image {
+                id: restartimage
+                anchors.centerIn: parent
+
+                source: "images/restart.svg"
+                width: 30
+                height: 30
+
+                scale: restartarea.hovered ? 1.1 : 1
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: 150
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+        }
+
+        HoverHandler {
+            id: restartarea
+            cursorShape: Qt.PointingHandCursor
+        }
+
+        background: Rectangle {
+            color: "#68000000"
+            radius: 5
+            border.color: "#96ffffff"
+            border.width: 2
+        }
+
+        onClicked: sddm.reboot()
+    }
+
+    // Suspend button
+    Button {
+        id: suspendbutton
+        x: 820
+        y: 815
+        width: 50
+        height: 60
+        flat: true
+
+        contentItem: Item {
+            x: 0
+            y: 6
+            width: 50
+            height: 48
+
+            Image {
+                id: suspendimage
+                anchors.centerIn: parent
+
+                source: "images/suspend.svg"
+                width: 30
+                height: 30
+
+                scale: suspendarea.hovered ? 1.1 : 1
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: 150
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+        }
+
+        HoverHandler {
+            id: suspendarea
+            cursorShape: Qt.PointingHandCursor
+        }
+
+        background: Rectangle {
+            color: "#68000000"
+            radius: 5
+            border.color: "#96ffffff"
+            border.width: 2
+        }
+
+        onClicked: sddm.suspend()
+    }
+
+
+    states: [
+        State {
+            name: "clicked"
+        }
+    ]
 }
