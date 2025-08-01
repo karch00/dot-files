@@ -1,0 +1,221 @@
+:root{
+    --darken-bg: rgba(0,0,0,0.2);
+    --darken-bg2: rgba(0,0,0,0.25);
+    --darken-bg3 : rgba(0,0,0,0.4);
+    --light-border: rgba(256,256,256,0.75) 2px double;
+    --wp: url("WP.png");
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 8rem;
+    margin: 0;
+
+    font-family: Jetbrains Mono, sans-serif ;
+    color: #efefef;
+
+    background-image: var(--wp);
+
+    h1{
+        font-size: 5rem;
+    }
+    h2{
+        font-size: 1.5rem;
+    }
+}
+
+
+#clock-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: -1rem;
+
+    width: 600px;
+    height: 100px;
+
+    user-select: none;
+}
+
+
+#date-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 5rem;
+
+    width: 250px;
+    height: 60px;
+
+    user-select: none;
+}
+
+
+#login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 1rem;
+
+    width: 500px;
+    height: 300px;
+
+    font-family: Jetbrains Mono, sans-serif ;
+    font-size: 1.25rem;
+
+    border: var(--light-border);
+    border-radius: 15px;
+
+    backdrop-filter: blur(8px);
+    background: var(--darken-bg);
+}
+#welcome{
+    margin-bottom:2rem;
+}
+#profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#profile-pic{
+    background: none;
+
+    min-width: 80px;
+    max-width: 80px;
+    min-height: 80px;
+    max-height: 80px;
+
+    border: var(--light-border);
+    border-radius: 10%;
+
+    margin-bottom: -1rem;
+}
+#profile-name{
+    font-weight: 800;
+}
+#login-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#login-password {
+    width: 100px;
+    height: 30px;
+
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0 8px;
+
+    vertical-align: middle;
+
+    border: var(--light-border);
+    border-radius: 10px 0 0 10px;
+    border-right: none;
+
+    color: #efefef;
+
+    background: var(--darken-bg2);
+}
+#login-password:focus{
+    outline: none;
+}
+
+#login-button {
+    width: 32px;
+    height: 30px;
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: var(--light-border);
+    border-radius: 0 10px 10px 0;
+    border-left: none;
+
+    background: var(--darken-bg2);
+
+    cursor: pointer;
+
+    transition: ease-in-out background 0.2s;
+}
+#login-button:hover{
+    background: var(--darken-bg3);
+}
+#login-button svg {
+    width: 25px;
+    height: 25px;
+
+    display: block;
+
+    margin-left:2px;
+    margin-top:2px;
+    pointer-events: none;
+
+    path{
+        stroke:#efefef;
+        stroke-width:0.1rem;
+    }
+}
+#incorrect-password{
+    display: none;
+    visibility: hidden;
+
+    user-select: none;
+    color:red;
+    font-size: 0.75rem;
+}
+
+
+#utility-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    width: 500px;
+    height: 40px;
+}
+.utility-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    background: var(--darken-bg);
+    backdrop-filter: blur(8px);
+
+    border: var(--light-border);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: ease-in-out background 0.2s;
+}
+.utility-button:hover{
+    background: var(--darken-bg3);
+}
+.utility-button svg{
+    path{
+        stroke:#efefef;
+    }
+}
