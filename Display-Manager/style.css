@@ -1,7 +1,7 @@
 :root{
-    --darken-bg: rgba(0,0,0,0.2);
-    --darken-bg2: rgba(0,0,0,0.25);
-    --darken-bg3 : rgba(0,0,0,0.4);
+    --darken-bg: rgba(0,0,0,0.45);
+    --darken-bg2: rgba(0,0,0,0.5);
+    --darken-bg3 : rgba(0,0,0,0.15);
     --light-border: rgba(256,256,256,0.75) 2px double;
     --wp: url("WP.png");
 }
@@ -74,7 +74,6 @@ body {
     border: var(--light-border);
     border-radius: 15px;
 
-    backdrop-filter: blur(8px);
     background: var(--darken-bg);
 }
 #welcome{
@@ -153,10 +152,12 @@ body {
 
     cursor: pointer;
 
-    transition: ease-in-out background 0.2s;
+    transition: ease-in-out all 0.2s;
 }
 #login-button:hover{
-    background: var(--darken-bg3);
+    svg{
+        transform: scale(1.1);
+    }
 }
 #login-button svg {
     width: 25px;
@@ -202,7 +203,6 @@ body {
     height: 40px;
 
     background: var(--darken-bg);
-    backdrop-filter: blur(8px);
 
     border: var(--light-border);
     border-radius: 10px;

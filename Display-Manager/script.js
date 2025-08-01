@@ -15,7 +15,7 @@ function suspend() {
 
 window.authentication_complete = function() {
     if (lightdm.is_authenticated) {
-        lightdm.start_session();
+        lightdm.start_session("hyprland");
     }
     else {
         document.getElementById("login-password").value = "";
@@ -47,6 +47,10 @@ function updateClockAndDate() {
 window.onload = function() {
     updateClockAndDate();
     setInterval(updateClockAndDate, 1000);
+
+    lightdm.sessions.forEach(session => {
+        document.getElementById("debug").textContent = document.getElementById("debug").textContent + session;
+    })
 }
 
 
