@@ -151,8 +151,6 @@ body {
     background: var(--darken-bg2);
 
     cursor: pointer;
-
-    transition: ease-in-out 0.2s;
 }
 #login-button:hover{
     svg{
@@ -209,8 +207,6 @@ body {
     border-radius: 10px;
 
     cursor: pointer;
-
-    transition: ease-in-out background 0.2s;
 }
 .utility-button:hover{
     img{
@@ -220,4 +216,6 @@ body {
 .utility-button img{
     width: 25px;
     height: 25px;
+
+    transition: ease-in-out 0.2s;
 }
