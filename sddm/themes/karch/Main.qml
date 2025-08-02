@@ -241,26 +241,29 @@ Item {
     // Shutdown button
     Button {
         id: shutdownbutton
-        x: 660 + 20
-	y: 815
+        x: 670
+	y: 812
 	z: 1
-        width: 50
-        height: 50
+        width: 25
+        height: 25
         flat: true
 
         contentItem: Item {
             x: 0
             y: 6
-            width: 50
-            height: 50
+            width: shutdownbutton.width
+            height: shutdownbutton.height
 
             Image {
                 id: shutdownimage
-                anchors.centerIn: parent
+		anchors.centerIn: parent
+		antialiasing: true
+		smooth: true
+		mipmap: true
 
                 source: "images/shutdown.svg"
-                width: 30
-                height: 30
+                width: 15
+                height: 15
 
 
                 scale: shutdownarea.hovered ? 1.1 : 1
@@ -282,7 +285,7 @@ Item {
             color: "#68000000"
             radius: 5
             border.color: "#96ffffff"
-            border.width: 2
+            border.width: 1
         }
 
         onClicked: sddm.powerOff()
@@ -291,26 +294,29 @@ Item {
     // Restart Button
     Button {
         id: restartbutton
-        x: 750
-	y: 815
+        x: 700
+	y: 812
 	z: 1
-        width: 50
-        height: 50
+        width: 25
+        height: 25
         flat: true
 
         contentItem: Item {
             x: 0
             y: 6
-            width: 50
-            height: 50
+            width: restartbutton.width
+            height: restartbutton.height
 
             Image {
                 id: restartimage
-                anchors.centerIn: parent
+		anchors.centerIn: parent
+		antialiasing: true
+		smooth: true
+		mipmap: true
 
                 source: "images/restart.svg"
-                width: 30
-                height: 30
+                width: 15
+                height: 15
 
                 scale: restartarea.hovered ? 1.1 : 1
                 Behavior on scale {
@@ -331,7 +337,7 @@ Item {
             color: "#68000000"
             radius: 5
             border.color: "#96ffffff"
-            border.width: 2
+            border.width: 1
         }
 
         onClicked: sddm.reboot()
@@ -340,26 +346,29 @@ Item {
     // Suspend button
     Button {
         id: suspendbutton
-        x: 820
-        y: 815
-        width: 50
-        height: 50
+        x: 730
+        y: 812
+        width: 25
+        height: 25
         flat: true
 
         contentItem: Item {
             x: 0
 	    y: 6
 	    z: 1
-            width: 50
-            height: 50
+            width: suspendbutton.width
+            height: suspendbutton.height
 
             Image {
                 id: suspendimage
                 anchors.centerIn: parent
+		antialiasing: true
+		smooth: true
+		mipmap: true
 
                 source: "images/suspend.svg"
-                width: 30
-                height: 30
+                width: 15
+                height: 15
 
                 scale: suspendarea.hovered ? 1.1 : 1
                 Behavior on scale {
@@ -380,7 +389,7 @@ Item {
             color: "#68000000"
             radius: 5
             border.color: "#96ffffff"
-            border.width: 2
+            border.width: 1
         }
 
         onClicked: sddm.suspend()
