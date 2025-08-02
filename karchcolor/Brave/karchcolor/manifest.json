@@ -1,0 +1,91 @@
+{
+  "version": "5.0.1",
+  "manifest_version": 2,
+  "name": "karchcolor",
+  "theme": {
+    "colors": {
+      "bookmark_text": [
+        245,
+        245,
+        245
+      ],
+      "frame": [
+        18,
+        18,
+        18
+      ],
+      "ntp_background": [
+        50,
+        50,
+        50
+      ],
+      "ntp_text": [
+        245,
+        245,
+        245
+      ],
+      "tab_background_text": [
+        245,
+        245,
+        245
+      ],
+      "tab_background_text_inactive": [
+        245,
+        245,
+        245
+      ],
+      "tab_background_text_incognito": [
+        245,
+        245,
+        245
+      ],
+      "tab_background_text_incognito_inactive": [
+        245,
+        245,
+        245
+      ],
+      "tab_text": [
+        245,
+        245,
+        245
+      ],
+      "toolbar": [
+        50,
+        50,
+        50
+      ],
+      "omnibox_text": [
+        245,
+        245,
+        245
+      ],
+      "omnibox_background": [
+        18,
+        18,
+        18
+      ]
+    },
+    "tints": {
+      "buttons": [
+        0.6245791245791247,
+        0.5,
+        0.5
+      ],
+      "frame_inactive": [
+        -1,
+        -1,
+        -1
+      ],
+      "frame_incognito": [
+        0,
+        1,
+        0.55
+      ],
+      "frame_incognito_inactive": [
+        0,
+        1,
+        0.55
+      ]
+    }
+  }
+}
