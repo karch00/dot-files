@@ -14,6 +14,8 @@ window#waybar{
 #workspaces {
 	background: alpha(@color0, 0.8);
 	
+	min-width: 11.75rem;
+
 	border-radius: 20px;
 	border: @color6 2px solid;
 
@@ -23,26 +25,21 @@ window#waybar{
 #workspaces button {
 	color: @foreground;
 
-	transition: ease-in-out all 100ms;
+	padding: 0 8px;
+
+	transition: ease-in-out color 100ms, ease-in-out font-size 100ms;
+}
+#workspaces button:hover{
+	font-size: 1.25rem;
+	background: none;
+	text-shadow: none;
+	box-shadow: none;
+	border: none;
+	outline: none;
 }
 #workspaces button.active{
 	font-size: 1.25rem;
 	color: @color1;
-}
-
-#pulseaudio {
-	background: alpha(@color0, 0.8);
-
-	min-width: 4.5rem;
-
-	border-radius: 20px;
-	border: @color6 2px solid;
-
-	margin-top: 10px;
-	margin-right: 10px;
-	
-	padding-left: 10px;
-	padding-right: 10px;
 }
 
 .media{
@@ -50,28 +47,93 @@ window#waybar{
 
 	font-size: 12px;
 
-	min-width: 36rem;
+	min-width: 40rem;
 
 	border-radius: 20px;
 	border: @color6 2px solid;
 
 	margin-top: 10px;
-	margin-right: 20px;
 	
 	padding-left: 10px;
 	padding-right: 10px;
 }
 
 
+
 /* Central */
 #clock {
 	font-size: 2rem;
+	font-weight: 800;
 	margin-top: 10px;
 }
 
 
 
+/* Right */
+#network {
+	background: alpha(@color0, 0.8);
 
+	border-radius: 20px;
+	border: @color6 2px solid;
+
+	margin-top: 10px;
+	margin-right: 10px;
+
+	padding: 0 10px;
+}
+#pulseaudio {
+	background: alpha(@color0, 0.8);
+
+	min-width: 5rem;
+
+	border-radius: 20px;
+	border: @color6 2px solid;
+
+	margin-top: 10px;
+	margin-right: 10px;
+
+	padding: 0 10px;
+}
+#cpu {
+	background: alpha(@color0, 0.8);
+
+	min-width: 5rem;
+
+	border-radius: 20px;
+	border: @color6 2px solid;
+
+	margin-top: 10px;
+	margin-right: 10px;
+
+	padding: 0 10px;
+}
+#memory {
+	background: alpha(@color0, 0.8);
+
+	min-width: 5rem;
+
+	border-radius: 20px;
+	border: @color6 2px solid;
+
+	margin-top: 10px;
+	margin-right: 10px;
+
+	padding: 0 10px;
+}
+
+#battery {
+	background: alpha(@color0, 0.8);
+
+	min-width: 5rem;
+
+	border-radius: 20px;
+	border: @color6 2px solid;
+
+	margin-top: 10px;
+	margin-right: 10px;
+
+	padding: 0 10px;
+}
 
 
 

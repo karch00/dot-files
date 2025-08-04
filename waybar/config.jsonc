@@ -3,13 +3,12 @@
     "layer": "top", 
     "position": "top", 
     "height": 0, 
-    "width": 1850,
+    "width": 1845,
     "spacing": 0, 
     
     // Module Order
     "modules-left": [
 	    "hyprland/workspaces",
-	    "pulseaudio",
 	    "custom/media"
     ],
     "modules-center": [
@@ -17,6 +16,7 @@
     ],
     "modules-right": [
 	    "network",
+	    "pulseaudio",
 	    "cpu",
 	    "memory",
 	    "battery",
@@ -61,5 +61,36 @@
 	"interval": 1,
 	"on-click": "playerctl play-pause",
 	"exec": "$HOME/.config/waybar/waybar_mediaplayer 2> /dev/null"
+    },
+    
+    /* Modules center */
+    
+    /* Modules right */
+    "network" : {
+	"tooltip": false,
+	"format-wifi": "  {essid} {ipaddr}",
+	"format-ethernet" : "  {ipaddr}"
+    },
+    "cpu" : {
+	"tooltip": false,
+	"format" : "  {}%",
+	"interval": 5
+    },
+    "memory" : {
+	"tooltip": false,
+	"format": "  {}%"
+    },
+    "battery" : {
+	"tooltip": false,
+	"states": {
+            "warning": 30,
+            "critical": 10
+        },
+        "format": "{icon}  {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon}  {time}",
+        "format-icons": ["", "", "", "", ""]
     }
 }
