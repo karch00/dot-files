@@ -29,17 +29,18 @@ def truncate_text(text : str, max_length : int):
         toreturn = text
     return toreturn 
 
+NO_MUSIC = "  Empty... for now... ¯\_(ツ)_/¯"
 def main():
     # Get valid browser player
     players = subprocess.check_output(["playerctl", "--list-all"], text=True).strip().split()
     player = players[0] if len(players) >= 1 else None
     if not player or player == [""]:
-        return {"text": "No music playing", "class": "media"}
+        return {"text": NO_MUSIC, "class": "media"}
     
     # Get status (playing/stopped/paused)
     status = subprocess.check_output(["playerctl", "--player="+player, "status"], text=True).strip()
     if status == "Stopped":
-        return {"text": "No music playing", "class": "media"}
+        return {"text": NO_MUSIC, "class": "media"}
 
     # Process artist and title formatting
     artist = subprocess.check_output(["playerctl", "--player="+player, "metadata", "artist"], text=True).strip()
@@ -78,7 +79,7 @@ def main():
         progress_bar = completed_part + uncompleted_part
 
         text = f"{playing_icon} {artist} - {title} [{progress_bar}] {time_info}"
-        text = text + " " * (149-len(text))
+        text = text
     else:
         text = f"{playing_icon} {artist} - {title}"
     
@@ -89,4 +90,4 @@ if __name__ == "__main__":
         info = main()
         print(json.dumps(info))
     except Exception as e:
-        print(json.dumps({"text": f"  No Music Playing", "class": "media"}))
+        print(json.dumps({"text": NO_MUSIC, "class": "media"}))
