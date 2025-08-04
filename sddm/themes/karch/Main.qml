@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.15
+import "colors.js" as Colors
 
 Item {
     id: canvas
@@ -9,7 +10,13 @@ Item {
     height: 1080
 
     property string avatar: "file:///var/lib/AccountsService/icons/" + userModel.lastUser
-    property string wallpaper: "file:///usr/share/backgrounds/main_wp.png"
+    property string wallpaper: "file:///usr/share/backgrounds/main_wp"
+    property string foreground: Colors.color7
+    property string background: Colors.color0
+    property string border1: Colors.color1
+    property string border2: Colors.color2
+    property string border3: Colors.color6
+
 
     // Load
     Component.onCompleted: {
@@ -30,7 +37,7 @@ Item {
         id: clock
         x: 724
         y: 174
-        color: "#efefef"
+        color: foreground
         text: Qt.formatTime(new Date(), "hh:mm:ss")
         font.pixelSize: 98
         horizontalAlignment: Text.AlignHCenter
@@ -41,7 +48,7 @@ Item {
         id: clockdate
         x: 865
         y: 285
-        color: "#efefef"
+        color: foreground
         text: Qt.formatDate(new Date(), "dd/MM/yyyy")
         font.pixelSize: 32
         font.styleName: "SemiBold"
@@ -69,9 +76,9 @@ Item {
         id: loginpanel
         width: 600
         height: 400
-        color: "#7c000000"
+        color: background
         radius: 10
-        border.color: "#96ffffff"
+        border.color: border1
         border.width: 2
         z: 1
         x: 660
@@ -79,25 +86,36 @@ Item {
 
         // Welcome
         Text {
-            id: welcometext
-            x: 162
+	    id: welcometext
+	    x: 220	
             y: 28
-            color: "#efefef"
-            text: qsTr("Welcome back")
+            color: foreground
+            text: qsTr("Welcome")
             font.pixelSize: 38
             font.styleName: "Bold"
             font.family: "JetBrains Mono"
         }
 
-        // Avatar
+	// Avatar
+	Rectangle {
+	    id: avatarborder
+	    x: 234
+	    y: 89
+	    z: 0
+	    width: 132
+	    height: 132
+	    color: border2
+	    radius: avatarborder.width / 2
+	}
         Image {
             id: avatarpic
             x: 236
-            y: 91
+	    y: 91
+	    z: 1
             width: 128
             height: 128
 	    source: avatar
-            fillMode: Image.PreserveAspectCrop
+	    fillMode: Image.PreserveAspectCrop
 	    
 	    layer.enabled: true
 	    layer.effect: OpacityMask {
@@ -115,7 +133,7 @@ Item {
             id: username
             x: 265
             y: 225
-            color: "#efefef"
+            color: foreground
             text: userModel.lastUser
             font.pixelSize: 24
             font.styleName: "ExtraBold"
@@ -129,9 +147,9 @@ Item {
             y: 289
             width: 220
             height: 35
-            color: "#68000000"
+            color: background
             radius: 5
-            border.color: "#96ffffff"
+            border.color: border2
             border.width: 1.5
 
             TextInput {
@@ -140,7 +158,7 @@ Item {
                 y: 6
                 width: 202
                 height: 25
-                color: "#efefef"
+                color: foreground
                 font.pixelSize: 20
                 maximumLength: 14
                 font.family: "JetBrains Mono"
@@ -282,9 +300,9 @@ Item {
         }
 
         background: Rectangle {
-            color: "#68000000"
+            color: background
             radius: 5
-            border.color: "#96ffffff"
+            border.color: border3
             border.width: 1
         }
 
@@ -334,9 +352,9 @@ Item {
         }
 
         background: Rectangle {
-            color: "#68000000"
+            color: background
             radius: 5
-            border.color: "#96ffffff"
+            border.color: border3
             border.width: 1
         }
 
@@ -386,9 +404,9 @@ Item {
         }
 
         background: Rectangle {
-            color: "#68000000"
+            color: background
             radius: 5
-            border.color: "#96ffffff"
+            border.color: border3
             border.width: 1
         }
 

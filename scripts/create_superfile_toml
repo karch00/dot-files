@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+import os
+from pathlib import Path
+
+def main():
+    COLORS_PATH = f"{Path.home()}/.cache/wal/colors"
+    SUPERFILE_PATH = f"{Path.home()}/.config/superfile/theme"
+    if not (os.path.exists(COLORS_PATH) and os.path.exists(SUPERFILE_PATH)):
+        return
+
+    with open(COLORS_PATH, mode="r", encoding="utf-8") as f:
+        color = f.readlines()
+
+    for idx in range(0, len(color)):
+        color[idx] = color[idx][:-1]
+
+    SUPERFILE_TOML = \
+f'''
+# ========= Border =========
+file_panel_border = "{color[6]}"
+sidebar_border = "{color[6]}"
+footer_border = "{color[6]}"
+
+# ========= Border Active =========
+file_panel_border_active = "{color[6]}"
+sidebar_border_active = "{color[6]}"
+footer_border_active = "{color[6]}"
+modal_border_active = "{color[6]}"
+
+# ========= Background (bg) =========
+full_screen_bg = "{color[0]}"
+file_panel_bg = "{color[0]}"
+sidebar_bg = "{color[0]}"
+footer_bg = "{color[0]}"
+modal_bg = "{color[0]}"
+
+# ========= Foreground (fg) =========
+full_screen_fg = "{color[7]}"
+file_panel_fg = "{color[7]}"
+sidebar_fg = "{color[7]}"
+footer_fg = "{color[7]}"
+modal_fg = "{color[7]}"
+
+# ========= Special Color =========
+cursor = "{color[6]}"
+correct = "#7ed676"
+error = "{color[6]}"
+hint = "{color[2]}"
+cancel = "{color[5]}"
+
+# ========= File Panel Special Items =========
+file_panel_top_directory_icon = "{color[1]}"
+file_panel_top_path = "{color[1]}"
+file_panel_item_selected_fg = "{color[7]}"
+file_panel_item_selected_bg = "{color[0]}"
+
+# ========= Sidebar Special Items =========
+sidebar_title = "{color[7]}"
+sidebar_item_selected_fg = "{color[7]}"
+sidebar_item_selected_bg = "{color[0]}"
+sidebar_divider = "{color[7]}"
+
+# ========= Modal Special Items =========
+modal_cancel_fg = "{color[7]}"
+modal_cancel_bg = "{color[0]}"
+
+modal_confirm_fg = "{color[7]}"
+modal_confirm_bg = "{color[0]}"
+
+# ========= Help Menu =========
+help_menu_hotkey = "{color[3]}"
+help_menu_title = "{color[7]}"
+'''
+   
+    if os.path.exists(f"{SUPERFILE_PATH}/superfile-colors.toml"):
+       os.remove(f"{SUPERFILE_PATH}/superfile-colors.toml")
+    with open(f"{SUPERFILE_PATH}/superfile-colors.toml", mode="x", encoding="utf-8") as f:
+        f.write(SUPERFILE_TOML)
+
+if __name__ == "__main__":
+    main()

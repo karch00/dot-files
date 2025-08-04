@@ -1,0 +1,65 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", 
+    "position": "top", 
+    "height": 0, 
+    "width": 1850,
+    "spacing": 0, 
+    
+    // Module Order
+    "modules-left": [
+	    "hyprland/workspaces",
+	    "pulseaudio",
+	    "custom/media"
+    ],
+    "modules-center": [
+	    "clock"
+    ],
+    "modules-right": [
+	    "network",
+	    "cpu",
+	    "memory",
+	    "battery",
+	    "custom/power"
+    ],
+    
+    // Modules left
+    "hyprland/workspaces": {
+	"disable-scroll": true,
+	"all-outputs": true,
+	"warp-on-scroll": true,
+	"format": "{icon}",
+	"format-icons": {
+		"1" : "",
+		"2" : "",
+		"3" : "",
+		"4" : "",
+		"5" : ""
+	},
+	"persistent-workspaces": {
+		"1" : [],
+		"2" : [],
+		"3" : [],
+		"4" : [],
+		"5" : []
+	}
+    },
+    "pulseaudio": {
+	"tooltip": false,
+	"scroll-step": 1,
+	"format": "{icon}  {volume}%",
+	"format-icons": {
+	    "default": ["", "", ""]
+	}
+    },
+    "custom/media": {
+	"format": "{text}",
+	"justify": "left",
+	"return-type": "json",
+	"max-length": 60,
+	"escape": false,
+	"interval": 1,
+	"on-click": "playerctl play-pause",
+	"exec": "$HOME/.config/waybar/waybar_mediaplayer 2> /dev/null"
+    }
+}

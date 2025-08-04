@@ -1,0 +1,84 @@
+@import url("colors-waybar.css");
+
+* {
+	font-family: JetBrains Mono Nerd Font;
+}
+window#waybar{
+	background: transparent;
+	color: @foreground;
+}
+
+
+
+/* Left */
+#workspaces {
+	background: alpha(@color0, 0.8);
+	
+	border-radius: 20px;
+	border: @color6 2px solid;
+
+	margin-top: 10px;
+	margin-right: 10px;
+}
+#workspaces button {
+	color: @foreground;
+
+	transition: ease-in-out all 100ms;
+}
+#workspaces button.active{
+	font-size: 1.25rem;
+	color: @color1;
+}
+
+#pulseaudio {
+	background: alpha(@color0, 0.8);
+
+	min-width: 4.5rem;
+
+	border-radius: 20px;
+	border: @color6 2px solid;
+
+	margin-top: 10px;
+	margin-right: 10px;
+	
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.media{
+	background: alpha(@color0, 0.8);
+
+	font-size: 12px;
+
+	min-width: 36rem;
+
+	border-radius: 20px;
+	border: @color6 2px solid;
+
+	margin-top: 10px;
+	margin-right: 20px;
+	
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+/* Central */
+#clock {
+	font-size: 2rem;
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
