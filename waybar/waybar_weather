@@ -46,13 +46,13 @@ def main():
 
         text += f"{icons[weather]} {temp}ºC"
     
-    return text
+    return json.dumps({"text": text, "class": "weater"})
         
 
 if __name__ == "__main__":
     try:
         weather = main()
     except Exception as e:
-        weather = "Exception! Debug... I plead..."
-
+        weather = json.dumps({"text": "Exception! Debug... I plead...", "class": "weater"})
     print(weather)
+
