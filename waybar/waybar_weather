@@ -5,9 +5,9 @@ import json
 import time
 import os
 
-API_KEY: str = "2b06ff244e67b88dda17ae1e872998de" # openweatherap.org API
-LAT: float = 50.62925 # Latitude
-LON: float = 3.057256 # Longitude
+API_KEY: str = "" # openweatherap.org API
+LAT: float = 50.6293 # Latitude
+LON: float = 3.0573 # Longitude
 UNITS: str = "metric" # standard | metric |imperial
 COUNT: int = 4 # Get only n next hours
 REQ_URL: str = f"https://api.openweathermap.org/data/2.5/forecast?lat={LAT}&lon={LON}&appid={API_KEY}&units={UNITS}&cnt={COUNT}"
@@ -45,14 +45,16 @@ def main():
         temp = int(current_entry["main"]["temp"])
 
         text += f"{icons[weather]} {temp}ºC"
+        text += "  " if idx != 2 else ""
     
-    return json.dumps({"text": text, "class": "weater"})
+    return json.dumps({"text": text, "class": "weather"})
         
 
 if __name__ == "__main__":
     try:
         weather = main()
     except Exception as e:
-        weather = json.dumps({"text": "Exception! Debug... I plead...", "class": "weater"})
+        weather = json.dumps({"text": "Exception! Debug... I plead...", "class": "weather"})
     print(weather)
+
 
