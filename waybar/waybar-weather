@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 import requests
 import json
 import time
@@ -52,4 +54,5 @@ if __name__ == "__main__":
         weather = main()
     except Exception as e:
         weather = "Exception! Debug... I plead..."
+
     print(weather)
