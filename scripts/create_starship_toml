@@ -48,16 +48,16 @@ $line_break$character"""
 palette = 'karch'
 
 [palettes.karch]
-color_fg0 = '{color[7]}'
+color_fg0 = '{color[15]}'
 color_bg1 = '{color[0]}'
 color_bg3 = '{color[0]}'
-color_blue = '{color[1]}'
-color_aqua = '{color[4]}'
+color_blue = '{color[8]}'
+color_aqua = '{color[2]}'
 color_green = '{color[3]}'
 color_orange = '{color[6]}'
 color_purple = '{color[5]}'
 color_red = '{color[1]}'
-color_yellow = '{color[2]}'
+color_yellow = '{color[4]}'
 
 [os]
 disabled = false
