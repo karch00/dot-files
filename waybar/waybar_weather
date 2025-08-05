@@ -13,6 +13,13 @@ COUNT: int = 4 # Get only n next hours
 REQ_URL: str = f"https://api.openweathermap.org/data/2.5/forecast?lat={LAT}&lon={LON}&appid={API_KEY}&units={UNITS}&cnt={COUNT}"
 
 
+def internet_available():
+    try:
+        requests.get("https://google.com", timeout=1)
+        return True
+    except Exception as e:
+        return False
+
 def classify_entries(req: dict) -> dict:
     toreturn = {}
     for entry in req["list"]:
@@ -21,10 +28,18 @@ def classify_entries(req: dict) -> dict:
     return toreturn
     
 def main():
+    # First startup safety
+    time.sleep(5)
+
+    # Ensure connection
+    if not internet_available():
+        print(json.dumps({"text": "No connection...", "class": "weather"}))
+        return
+
     # Get request and entries
     req = requests.get(REQ_URL)
     if not req.ok:
-        return {"text": "API error! Debug it... I plead..."}
+        return {"text": "API error! Debug it... Pls..."}
     
     content = json.loads(req.content)
     weather_report = classify_entries(req=content)
@@ -51,10 +66,7 @@ def main():
         
 
 if __name__ == "__main__":
-    try:
-        weather = main()
-    except Exception as e:
-        weather = json.dumps({"text": "Exception! Debug... I plead...", "class": "weather"})
+    weather = main()
     print(weather)
 
 

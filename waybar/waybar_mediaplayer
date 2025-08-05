@@ -49,8 +49,8 @@ def main():
     if artist in title:
         title.replace(artist, "")
 
-    artist = truncate_text( get_first_artist(artist), 21 )
-    title = truncate_text(title,48)
+    artist = truncate_text( get_first_artist(artist), 18)
+    title = truncate_text(title, 43)
 
     # Get current position and length
     try:

@@ -47,7 +47,7 @@ window#waybar{
 
 	font-size: 12px;
 
-	min-width: 40rem;
+	min-width: 43.85rem;
 
 	border-radius: 20px;
 	border: @color6 2px solid;
@@ -120,11 +120,23 @@ window#waybar{
 
 	padding: 0 10px;
 }
-
 #battery {
 	background: alpha(@color0, 0.8);
 
 	min-width: 5rem;
+
+	border-radius: 20px;
+	border: @color6 2px solid;
+
+	margin-top: 10px;
+	margin-right: 10px;
+
+	padding: 0 10px;
+}
+.weather {
+	background: alpha(@color0, 0.8);
+
+	min-width: 15rem;
 
 	border-radius: 20px;
 	border: @color6 2px solid;
