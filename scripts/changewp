@@ -27,9 +27,11 @@ do
 done
 
 sudo cp $1 /usr/share/backgrounds/main_wp
+killall hyprpaper
+hyprpaper &
 
 # Generate theme
-wal -i /usr/share/backgrounds/main_wp --contrast 1.5 --saturate 0.85
+wal -i /usr/share/backgrounds/main_wp --contrast 1.5 --saturate 0.85 --fg '#efefef'
 
 # Config folders
 WAL_CACHE="$HOME/.cache/wal"
@@ -38,6 +40,7 @@ HYPR_CFG="$HOME/.config/hypr"
 SUPERFILE_CFG="$HOME/.config/superfile/theme"
 STARSHIP_CFG="$HOME/.config/starship.toml"
 WAYBAR_CFG="$HOME/.config/waybar"
+ROFI_CFG="$HOME/.config/rofi"
 
 # Exit if not WAL_CACHE
 if [ ! -d "$WAL_CACHE" ]; then
@@ -79,8 +82,17 @@ cp "$WAL_CACHE/colors-waybar.css" "$WAYBAR_CFG/colors-waybar.css"
 killall waybar
 waybar &
 
+# --== SDDM ==--
 if [ -f "/bin/create_sddm_colors" ]; then
 	sudo create_sddm_colors
 fi
 
+# --== ROFI ==--
+if [ ! -d $ROFI_CFG ]; then
+	rofi dump-config > "$ROFI_CFG/config.rasi" -p
+	echo '@theme "rofi-custom"' >> "$ROFI_CFG/config.rasi"
+fi
+if [ -f "/bin/create_rofi_theme" ]; then
+	create_rofi_theme
+fi
 

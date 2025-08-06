@@ -202,5 +202,8 @@ vimcmd_visual_symbol = '[](bold fg:color_yellow)'
     with open(STARSHIP_PATH, mode="x", encoding="utf8") as f:
         f.write(STARSHIP_TOML)
 
+    print("Created starship toml")
+    return
+
 if __name__=="__main__":
     main()

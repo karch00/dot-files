@@ -25,5 +25,8 @@ def main():
     with open(f"{SDDM_PATH}/colors.js", mode="x", encoding="utf-8") as f:
         f.write(colors_js)
 
+    print("Created sddm colors")
+    return
+
 if __name__=="__main__":
     main()
