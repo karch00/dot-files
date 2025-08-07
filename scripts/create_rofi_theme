@@ -20,7 +20,8 @@ f'''
 	main-bg: {color[0]}d8;
 	select-bg: {color[7]}a8;
 	foreground: {color[15]};
-	border: {color[1]};
+	border1: {color[1]};
+    border2: {color[2]};
 {"}"}
 '''
 
@@ -31,7 +32,7 @@ window {
 	
 	border: 3px;
 	border-radius: 5px;
-	border-color: @border;
+	border-color: @border1;
 	
 	padding: 10px;
 
@@ -70,7 +71,7 @@ entry {
 	text-color: @foreground;
 
 	border: 3px;
-	border-color: @border;
+	border-color: @border2;
 	border-radius: 5px;
 
 	margin: 0 5px;
@@ -103,7 +104,7 @@ element selected{
 	background-color: @select-bg;
 
 	border: 3px;
-	border-color: @border;
+	border-color: @border2;
 	border-radius: 5px;
 }
 element-icon {
