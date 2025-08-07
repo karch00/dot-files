@@ -81,16 +81,16 @@
 	"format-disconnected" : "󱘖  Lonely..."
     },
     "cpu" : {
-	"tooltip": false,
-	"format" : "  {}%",
-	"interval": 5
+	"tooltip": true,
+	"format" : "  {usage:2}%",
+	"interval": 10
     },
     "memory" : {
 	"tooltip": false,
 	"format": "  {}%"
     },
     "battery" : {
-	"tooltip": false,
+	"tooltip": true,
 	"states": {
             "warning": 30,
             "critical": 10
@@ -99,7 +99,6 @@
         "format-full": "{icon}  {capacity}%",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
-        "format-alt": "{icon}  {time}",
         "format-icons": ["", "", "", "", ""]
     }
 }
