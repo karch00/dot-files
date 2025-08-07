@@ -1,6 +1,6 @@
 @import url("colors-waybar.css");
 
-* {
+* { 
 	font-family: JetBrains Mono Nerd Font;
 }
 window#waybar{
@@ -17,7 +17,7 @@ window#waybar{
 	min-width: 11.75rem;
 
 	border-radius: 20px;
-	border: @color6 2px solid;
+	border: @color2 2px solid;
 
 	margin-top: 10px;
 	margin-right: 10px;
@@ -50,7 +50,7 @@ window#waybar{
 	min-width: 43.85rem;
 
 	border-radius: 20px;
-	border: @color6 2px solid;
+	border: @color2 2px solid;
 
 	margin-top: 10px;
 	
@@ -74,7 +74,7 @@ window#waybar{
 	background: alpha(@color0, 0.8);
 
 	border-radius: 20px;
-	border: @color6 2px solid;
+	border: @color2 2px solid;
 
 	margin-top: 10px;
 	margin-right: 10px;
@@ -87,7 +87,7 @@ window#waybar{
 	min-width: 5rem;
 
 	border-radius: 20px;
-	border: @color6 2px solid;
+	border: @color2 2px solid;
 
 	margin-top: 10px;
 	margin-right: 10px;
@@ -100,7 +100,7 @@ window#waybar{
 	min-width: 5rem;
 
 	border-radius: 20px;
-	border: @color6 2px solid;
+	border: @color2 2px solid;
 
 	margin-top: 10px;
 	margin-right: 10px;
@@ -113,7 +113,7 @@ window#waybar{
 	min-width: 5rem;
 
 	border-radius: 20px;
-	border: @color6 2px solid;
+	border: @color2 2px solid;
 
 	margin-top: 10px;
 	margin-right: 10px;
@@ -126,7 +126,7 @@ window#waybar{
 	min-width: 5rem;
 
 	border-radius: 20px;
-	border: @color6 2px solid;
+	border: @color2 2px solid;
 
 	margin-top: 10px;
 	margin-right: 10px;
@@ -139,7 +139,7 @@ window#waybar{
 	min-width: 15rem;
 
 	border-radius: 20px;
-	border: @color6 2px solid;
+	border: @color2 2px solid;
 
 	margin-top: 10px;
 	margin-right: 10px;

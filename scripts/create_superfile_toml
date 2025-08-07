@@ -17,15 +17,15 @@ def main():
     SUPERFILE_TOML = \
 f'''
 # ========= Border =========
-file_panel_border = "{color[6]}"
-sidebar_border = "{color[6]}"
-footer_border = "{color[6]}"
+file_panel_border = "{color[2]}"
+sidebar_border = "{color[2]}"
+footer_border = "{color[2]}"
 
 # ========= Border Active =========
-file_panel_border_active = "{color[6]}"
-sidebar_border_active = "{color[6]}"
-footer_border_active = "{color[6]}"
-modal_border_active = "{color[6]}"
+file_panel_border_active = "{color[2]}"
+sidebar_border_active = "{color[2]}"
+footer_border_active = "{color[2]}"
+modal_border_active = "{color[2]}"
 
 # ========= Background (bg) =========
 full_screen_bg = "{color[0]}"
@@ -42,15 +42,15 @@ footer_fg = "{color[7]}"
 modal_fg = "{color[7]}"
 
 # ========= Special Color =========
-cursor = "{color[6]}"
+cursor = "{color[2]}"
 correct = "#7ed676"
-error = "{color[6]}"
+error = "{color[2]}"
 hint = "{color[2]}"
 cancel = "{color[5]}"
 
 # ========= File Panel Special Items =========
-file_panel_top_directory_icon = "{color[1]}"
-file_panel_top_path = "{color[1]}"
+file_panel_top_directory_icon = "{color[2]}"
+file_panel_top_path = "{color[2]}"
 file_panel_item_selected_fg = "{color[7]}"
 file_panel_item_selected_bg = "{color[0]}"
 

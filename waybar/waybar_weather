@@ -5,7 +5,7 @@ import json
 import time
 import os
 
-API_KEY: str = "" # openweatherap.org API
+API_KEY: str = "2b06ff244e67b88dda17ae1e872998de" # openweatherap.org API
 LAT: float = 50.6293 # Latitude
 LON: float = 3.0573 # Longitude
 UNITS: str = "metric" # standard | metric |imperial

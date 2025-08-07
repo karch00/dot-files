@@ -9,13 +9,13 @@ Item {
     width: 1920
     height: 1080
 
+
     property string avatar: "file:///var/lib/AccountsService/icons/" + userModel.lastUser
     property string wallpaper: "file:///usr/share/backgrounds/main_wp"
-    property string foreground: Colors.color7
+    property string foreground: Colors.color15
     property string background: Colors.color0
     property string border1: Colors.color1
     property string border2: Colors.color2
-    property string border3: Colors.color6
 
 
     // Load
@@ -302,7 +302,7 @@ Item {
         background: Rectangle {
             color: background
             radius: 5
-            border.color: border3
+            border.color: border1
             border.width: 1
         }
 
@@ -354,7 +354,7 @@ Item {
         background: Rectangle {
             color: background
             radius: 5
-            border.color: border3
+            border.color: border1
             border.width: 1
         }
 
@@ -406,7 +406,7 @@ Item {
         background: Rectangle {
             color: background
             radius: 5
-            border.color: border3
+            border.color: border1
             border.width: 1
         }
 

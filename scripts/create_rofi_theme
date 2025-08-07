@@ -20,7 +20,7 @@ f'''
 	main-bg: {color[0]}d8;
 	select-bg: {color[7]}a8;
 	foreground: {color[15]};
-	border: {color[6]};
+	border: {color[1]};
 {"}"}
 '''
 
