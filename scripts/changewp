@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# Ensure argument was passed + path valid
+# Ensure arguments were passed and validate them
 if [ ! $1 ]; then
 	echo "No wallpaper specified"
 	exit
@@ -8,6 +8,13 @@ fi
 if [ ! -f $1 ]; then
 	echo "Path not valid"
 	exit
+fi
+if [[ $2 && "wal --backend | grep $2" ]]; then
+	BACKEND=true
+	echo "> Backend specified: $2"
+else
+	BACKEND=false
+	echo "> No backend specified"
 fi
 
 # Change bg
@@ -30,8 +37,14 @@ sudo cp $1 /usr/share/backgrounds/main_wp
 killall hyprpaper
 hyprpaper &
 
+sleep 0.5
+
 # Generate theme
-wal -i /usr/share/backgrounds/main_wp --contrast 1.5 --saturate 0.85 --fg '#efefef'
+if [ $BACKEND==true ]; then
+	wal -i /usr/share/backgrounds/main_wp --contrast 1.5 --saturate 0.85 --fg '#efefef' --backend "$2"
+else
+	wal -i /usr/share/backgrounds/main_wp --contrast 1.5 --saturate 0.85 --fg '#efefef'
+fi
 
 # Config folders
 WAL_CACHE="$HOME/.cache/wal"
@@ -42,6 +55,7 @@ STARSHIP_CFG="$HOME/.config/starship.toml"
 WAYBAR_CFG="$HOME/.config/waybar"
 ROFI_CFG="$HOME/.config/rofi"
 DUNST_CFG="$HOME/.config/dunst"
+WLOGOUT_CFG="$HOME/.config/wlogout"
 
 # Exit if not WAL_CACHE
 if [ ! -d "$WAL_CACHE" ]; then
@@ -81,7 +95,7 @@ if [ ! -d "$WAYBAR_CFG" ]; then
 fi
 cp "$WAL_CACHE/colors-waybar.css" "$WAYBAR_CFG/colors-waybar.css"
 killall waybar
-waybar &
+nohup waybar &
 
 # --== SDDM ==--
 if [ -f "/bin/create_sddm_colors" ]; then
@@ -104,13 +118,18 @@ fi
 if [ -f "/bin/create_dunstrc" ]; then
 	create_dunstrc
 	killall dunst
-	dunst
+	nohup dunst &
 fi
 
-
-
-
-
-
-
-
+# --== WLOGOUT ==--
+if [ ! -d $WLOGOUT_CFG ]; then
+	if [ -d "/etc/wlogout"]; then
+		echo "Copying wlogout default config"
+		cp -r "/etc/wlogout" "$HOME/.config/"
+	else
+		echo "wlogout default config not found"
+	fi
+fi
+if [ -d $WLOGOUT_CFG ]; then
+	cp "$WAL_CACHE/colors-waybar.css $WLOGOUT_CFG/colors.css"
+fi
