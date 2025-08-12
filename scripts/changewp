@@ -95,7 +95,7 @@ if [ ! -d "$WAYBAR_CFG" ]; then
 fi
 cp "$WAL_CACHE/colors-waybar.css" "$WAYBAR_CFG/colors-waybar.css"
 killall waybar
-nohup waybar &
+nohup waybar > /dev/null 2>&1 &
 
 # --== SDDM ==--
 if [ -f "/bin/create_sddm_colors" ]; then
@@ -118,7 +118,7 @@ fi
 if [ -f "/bin/create_dunstrc" ]; then
 	create_dunstrc
 	killall dunst
-	nohup dunst &
+	nohup dunst > /dev/null 2>&1 &
 fi
 
 # --== WLOGOUT ==--
