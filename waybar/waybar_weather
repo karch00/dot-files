@@ -29,7 +29,7 @@ def classify_entries(req: dict) -> dict:
     
 def main():
     # First startup safety
-    time.sleep(5)
+    time.sleep(8)
 
     # Ensure connection
     if not internet_available():
