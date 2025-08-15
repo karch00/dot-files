@@ -64,6 +64,9 @@
     },
     
     /* Modules center */
+    "clock" : {
+      "tooltip" : false
+    },
     
     /* Modules right */
     "custom/weather" : {
