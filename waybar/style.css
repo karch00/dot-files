@@ -73,6 +73,8 @@ window#waybar{
 #network {
 	background: alpha(@color0, 0.8);
 
+  min-width: 10.5rem;
+
 	border-radius: 20px;
 	border: @color2 2px solid;
 
@@ -136,7 +138,7 @@ window#waybar{
 .weather {
 	background: alpha(@color0, 0.8);
 
-	min-width: 15rem;
+	min-width: 13.8rem;
 
 	border-radius: 20px;
 	border: @color2 2px solid;
