@@ -4,8 +4,10 @@ import requests
 import json
 import time
 import os
+from dotenv import load_dotenv
 
-API_KEY: str = "2b06ff244e67b88dda17ae1e872998de" # openweatherap.org API
+load_dotenv()
+API_KEY: str | None = os.getenv("API_KEY") # openweatherapi.org API
 LAT: float = 50.6293 # Latitude
 LON: float = 3.0573 # Longitude
 UNITS: str = "metric" # standard | metric |imperial
@@ -17,7 +19,7 @@ def internet_available():
     try:
         requests.get("https://google.com", timeout=1)
         return True
-    except Exception as e:
+    except Exception:
         return False
 
 def classify_entries(req: dict) -> dict:
@@ -28,13 +30,9 @@ def classify_entries(req: dict) -> dict:
     return toreturn
     
 def main():
-    # First startup safety
-    time.sleep(8)
-
     # Ensure connection
-    if not internet_available():
-        print(json.dumps({"text": "No connection...", "class": "weather"}))
-        return
+    while not internet_available():
+        time.sleep(3)
 
     # Get request and entries
     req = requests.get(REQ_URL)
