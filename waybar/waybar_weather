@@ -4,6 +4,7 @@ import requests
 import json
 import time
 import os
+import socket
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,10 +22,46 @@ def classify_entries(req: dict) -> dict:
         toreturn[entry["dt"]] = entry
     
     return toreturn
+
+def create_time_file(file: str) -> None:
+    open(file, mode="x", encoding="utf-8")
+    with open(file, mode="w", encoding="utf-8") as f:
+        f.write("0")
+
+def update_time(file: str) -> None:
+    with open(file, mode="w", encoding="utf-8") as f:
+        f.truncate(0)
+        f.write(str(time.time()))
+
+def get_last_update(file: str) -> float:
+    with open(file, mode="r", encoding="utf-8") as f:
+       return float(f.read())
+
+def internet_available() -> bool:
+    try:
+        s = socket.create_connection(("1.1.1.1", 53))
+        s.close()
+        return True
+    except Exception:
+        return False
     
 def main():
-    # Wait initial connection
-    time.sleep(15)
+    # Create update file
+    FILE: str = "/home/karch/.config/waybar/weather_last_update"
+    if not os.path.exists(FILE):
+        create_time_file(FILE)
+    
+    # Check for internet connection 
+    if not internet_available():
+        print(" No internet")
+        return
+
+    # Check for last update 
+    last_update = get_last_update(FILE)
+    if (time.time() - last_update) < 300:
+        print(time.time() - last_update)
+        return
+    update_time(FILE)
 
     # Get request and entries
     req = requests.get(REQ_URL)

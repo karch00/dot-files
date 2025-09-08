@@ -73,7 +73,7 @@
 	    "format": "{text}",
 	    "return-type" : "json",
 	    "escape": "false",
-	    "interval": 600,
+	    "interval": 20,
 	    "exec" : "$HOME/.config/waybar/waybar_weather 2> /dev/null",
 	    "on-click": "$HOME/.config/waybar/waybar_weather 2> /dev/null"
     },
@@ -81,7 +81,7 @@
 	"tooltip": false,
 	"format-wifi": "  {essid} {ipaddr}",
 	"format-ethernet" : "  {ipaddr}",
-	"format-disconnected" : "󱘖  Lonely..."
+	"format-disconnected" : "󱘖  No internet"
     },
     "cpu" : {
 	"tooltip": true,
