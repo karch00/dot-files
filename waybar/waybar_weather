@@ -44,7 +44,7 @@ def internet_available() -> bool:
         return True
     except Exception:
         return False
-    
+ 
 def main():
     # Create update file
     FILE: str = "/home/karch/.config/waybar/weather_last_update"
