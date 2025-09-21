@@ -12,7 +12,7 @@ API_KEY: str | None = os.getenv("API_KEY") # openweatherapi.org API
 LAT: float = 50.6293 # Latitude
 LON: float = 3.0573 # Longitude
 UNITS: str = "metric" # standard | metric |imperial
-COUNT: int = 4 # Get only n next hours
+COUNT: int = 1 # Get only n next hours
 REQ_URL: str = f"https://api.openweathermap.org/data/2.5/forecast?lat={LAT}&lon={LON}&appid={API_KEY}&units={UNITS}&cnt={COUNT}"
 
 
@@ -53,8 +53,7 @@ def main():
     
     # Check for internet connection 
     if not internet_available():
-        print(" No internet")
-        return
+        return json.dumps({"text": " No internet", "class": "weather"})
 
     # Check for last update 
     last_update = get_last_update(FILE)
@@ -66,28 +65,34 @@ def main():
     # Get request and entries
     req = requests.get(REQ_URL)
     if not req.ok:
-        return {"text": "API error! Debug it... Pls..."}
+        return json.dumps({"text": "API error!", "class": "weather"})
     
     content = json.loads(req.content)
     weather_report = classify_entries(req=content)
     
+    # Use for multiple entries 
     # Advance 1 entry if next entry timestamp difference with current time is less than 15 minutes
-    current_time = int(time.time())
-    next_timestamp = weather_report[list(weather_report.keys())[1]]["dt"] 
-    if next_timestamp - current_time <= 900:
-        weather_report.pop(0)
+    # current_time = int(time.time())
+    # next_timestamp = weather_report[list(weather_report.keys())[1]]["dt"] 
+    # if next_timestamp - current_time <= 900:
+    #     weather_report.pop(0)
     
     # Generate text
     entry_keys = list(weather_report.keys())
     icons = {"Rain": "", "Clouds" : "", "Snow": "", "Clear": ""}
+    weather_names = {"Rain": "Rainy", "Clouds": "Cloudy", "Snow": "Snowy", "Clear": "Clear"}
     text = ""
-    for idx in range(3):
+    for idx in range(COUNT):
         current_entry = weather_report[entry_keys[idx]]
+
         weather = current_entry["weather"][0]["main"]
+        precipitation = int(current_entry["pop"] * 100)
         temp = int(current_entry["main"]["temp"])
 
-        text += f"{icons[weather]} {temp}ºC"
-        text += "  " if idx != 2 else ""
+        text += f"{icons[weather]} {weather_names[weather]} - {precipitation}% - {temp}ºC"
+        # Use for multiple entries
+        # text += f"{icons[weather]} {temp}ºC"
+        # text += "  " if idx != 2 else ""
     
     return json.dumps({"text": text, "class": "weather"})
         

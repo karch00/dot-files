@@ -29,7 +29,7 @@ def truncate_text(text : str, max_length : int):
         toreturn = text
     return toreturn 
 
-NO_MUSIC = "  Why must fate write in scarlet, cured by blood that the stars let? ~~"
+NO_MUSIC = "  ------==== No music playing ====------ "
 def main():
     # Get valid browser player
     players = subprocess.check_output(["playerctl", "--list-all"], text=True).strip().split()
