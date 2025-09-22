@@ -73,7 +73,7 @@
 	    "format": "{text}",
 	    "return-type" : "json",
 	    "escape": "false",
-	    "interval": 20,
+	    "interval": 120,
 	    "exec" : "$HOME/.config/waybar/waybar_weather 2> /dev/null",
 	    "on-click": "$HOME/.config/waybar/waybar_weather 2> /dev/null"
     },

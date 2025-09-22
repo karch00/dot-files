@@ -47,20 +47,20 @@ def internet_available() -> bool:
  
 def main():
     # Create update file
-    FILE: str = "/home/karch/.config/waybar/weather_last_update"
-    if not os.path.exists(FILE):
-        create_time_file(FILE)
+    # FILE: str = "/home/karch/.config/waybar/weather_last_update"
+    # if not os.path.exists(FILE):
+    #     create_time_file(FILE)
     
     # Check for internet connection 
     if not internet_available():
         return json.dumps({"text": " No internet", "class": "weather"})
 
     # Check for last update 
-    last_update = get_last_update(FILE)
-    if (time.time() - last_update) < 300:
-        print(time.time() - last_update)
-        return
-    update_time(FILE)
+    # last_update = get_last_update(FILE)
+    # if (time.time() - last_update) < 300:
+    #     print(time.time() - last_update)
+    #     return
+    # update_time(FILE)
 
     # Get request and entries
     req = requests.get(REQ_URL)
