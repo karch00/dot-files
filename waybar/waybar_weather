@@ -63,9 +63,17 @@ def main():
     # update_time(FILE)
 
     # Get request and entries
-    req = requests.get(REQ_URL)
-    if not req.ok:
-        return json.dumps({"text": "API error!", "class": "weather"})
+    err_text = None
+    try:
+        req = requests.get(REQ_URL, timeout=10)
+    except Exception:
+        err_text = " Timed out"
+        req = None
+    
+    if not req:
+        err_text = " API Error"
+    if not req or not req.ok:
+        return json.dumps({"text": err_text, "class": "weather"})
     
     content = json.loads(req.content)
     weather_report = classify_entries(req=content)

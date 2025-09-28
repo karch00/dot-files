@@ -59,7 +59,7 @@
 	"return-type": "json",
 	"escape": false,
 	"interval": 1,
-	"on-click": "playerctl play-pause",
+	"on-click": "open_music_widget",
 	"exec": "$HOME/.config/waybar/waybar_mediaplayer 2> /dev/null"
     },
     
