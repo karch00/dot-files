@@ -9,7 +9,7 @@
     box-sizing: border-box;
     
     font-family: Gohu;
-    font-size: 10px;
+    font-size: 18px;
     color: var(--foreground);
 
     user-select: none;
@@ -135,7 +135,7 @@ main {
 
     padding: 0 0.5rem;
 
-    font-size: 8px;
+    font-size: 14px;
 
     background: none;
 
@@ -193,7 +193,7 @@ main {
     text-align: center;
     text-decoration: none;
 
-    font-size: 11px;
+    font-size: 20px;
 
     transition: 50ms ease-in-out transform, 50ms ease-in-out color;
 }

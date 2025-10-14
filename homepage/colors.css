@@ -4,25 +4,25 @@
     --wallpaper: url("/usr/share/backgrounds/main_wp");
 
     /* Special */
-    --background: #0c0000;
+    --background: #03162f;
     --foreground: #efefef;
-    --cursor: #c1c0c0;
+    --cursor: #c3c5c8;
 
     /* Colors */
-    --color0: #0c0000;
-    --color1: #bd280f;
-    --color2: #c92a10;
-    --color3: #de5911;
-    --color4: #b4cf10;
-    --color5: #ed9d26;
-    --color6: #f09246;
-    --color7: #c1c0c0;
-    --color8: #ab0d0d;
-    --color9: #bd280f;
-    --color10: #c92a10;
-    --color11: #de5911;
-    --color12: #b4cf10;
-    --color13: #ed9d26;
-    --color14: #f09246;
+    --color0: #03162f;
+    --color1: #0f55bb;
+    --color2: #1c6aec;
+    --color3: #be37ee;
+    --color4: #ed205a;
+    --color5: #e41225;
+    --color6: #b80e1a;
+    --color7: #c3c5c8;
+    --color8: #0f58c2;
+    --color9: #0f55bb;
+    --color10: #1c6aec;
+    --color11: #be37ee;
+    --color12: #ed205a;
+    --color13: #e41225;
+    --color14: #b80e1a;
     --color15: #efefef;
 }
