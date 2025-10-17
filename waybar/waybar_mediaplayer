@@ -4,20 +4,13 @@ import json
 import subprocess
 import os
 
-# Get colors from home
-if os.path.exists("/home/karch/.config/waybar/colors-waybar.css"):
-    with open("/home/karch/.config/waybar/colors-waybar.css", mode="r", encoding="utf-8") as f:
-        lines = f.readlines()
-        FOREGROUND = lines[0][25:32]
-        COMPLETED_COLOR = lines[10][21:28]
-
 # Get only first artist
 def get_first_artist(artists : str):
     return artists.split(",")[0]
 
 # Truncate text to fit
 def truncate_text(text : str, max_length : int):
-    forbidden = "\"\'¡¿=([{^´*+-/@#%$&|ºª-_.:,;<> "
+    forbidden = "\"\\'¡¿=([{^´*+-/@#%$&|ºª-_.:,;<> "
 
     if len(text) > max_length:
         selection = text[0:max_length-3]
@@ -29,17 +22,12 @@ def truncate_text(text : str, max_length : int):
         toreturn = text
     return toreturn 
 
-NO_MUSIC = "  ----------------============== No music playing ==============---------------- "
+NO_MUSIC = "  No music currently playing"
 def main():
     # Get valid browser player
     players = subprocess.check_output(["playerctl", "--list-all"], text=True).strip().split()
     player = players[0] if len(players) >= 1 else None
     if not player or player == [""]:
-        return {"text": NO_MUSIC, "class": "media"}
-    
-    # Get status (playing/stopped/paused)
-    status = subprocess.check_output(["playerctl", "--player="+player, "status"], text=True).strip()
-    if status == "Stopped":
         return {"text": NO_MUSIC, "class": "media"}
 
     # Process artist and title formatting
@@ -49,39 +37,11 @@ def main():
     if artist in title:
         title.replace(artist, "")
 
-    artist = truncate_text( get_first_artist(artist), 18)
-    title = truncate_text(title, 43)
+    artist = truncate_text(get_first_artist(artist), 28)
+    title = truncate_text(title, 52)
 
-    # Get current position and length
-    try:
-        position = int(float(subprocess.check_output(["playerctl", "--player="+player, "position"], text=True).strip()))
-        length_mcs = int(subprocess.check_output(["playerctl", "--player="+player, "metadata", "mpris:length"], text=True).strip())
-        length = length_mcs // 1000000 if length_mcs else 0
-    except Exception as e:
-        position = 0
-        length = 0
-    
     # Format message
-    playing_icon = "" if status == "Paused" else ""
-
-    if length > 0:
-        progress= position / length
-        bar_length = 12
-        filled = int(progress * bar_length)
-        time_info = f"{position//60:02d}:{position%60:02d}"
-
-        completed = "/"
-        completed_part = f'<span foreground="{COMPLETED_COLOR}">{completed * filled}</span>'
-        
-        uncompleted = "-"
-        uncompleted_part = f'<span foreground="{FOREGROUND}">{uncompleted * (bar_length-filled)}</span>'
-        
-        progress_bar = completed_part + uncompleted_part
-
-        text = f"{playing_icon} {artist} - {title} [{progress_bar}] {time_info}"
-        text = text
-    else:
-        text = f"{playing_icon} {artist} - {title}"
+    text = f"  {artist} - {title}"
     
     return {"text": text, "class": "media"}
 

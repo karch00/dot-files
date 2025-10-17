@@ -9,7 +9,7 @@ SESSION = requests.Session()
 MISSING_METADATA = {
     "title": "No song playing",
     "artist": "---",
-    "image": "./music_placeholder.png",
+    "image": "./assets/music_placeholder.png",
     "length": 1,
     "progress_time": "00:00",
     "progress_bar": 0,
@@ -58,23 +58,23 @@ def isLastSong(current_title: str, current_artist: str) -> bool:
     current_song = f"{current_title}{current_artist}".strip()
     
     try:
-        with open("./last_song", mode="r", encoding="UTF-8") as f:
+        with open("./temp/last_song", mode="r", encoding="UTF-8") as f:
             last_song = f.readline().strip()
     except FileNotFoundError:
-        with open("./last_song", mode="w", encoding="UTF-8") as f:
+        with open("./temp/last_song", mode="w", encoding="UTF-8") as f:
             f.write(current_song)
         return False
     
     if last_song == current_song:
         return True
     else:
-        with open("./last_song", mode="w", encoding="UTF-8") as f:
+        with open("./temp/last_song", mode="w", encoding="UTF-8") as f:
             f.write(current_song)
         return False
 
 def createImage(data: bytes):
     """Creates image from binary data"""
-    with open("./music", "wb") as f: 
+    with open("./temp/music", "wb") as f: 
         f.write(data)
 
 def getImage(image: str, title: str, artist: str) -> str:
@@ -82,19 +82,19 @@ def getImage(image: str, title: str, artist: str) -> str:
     try:
         is_last_song = isLastSong(current_title=title, current_artist=artist)
         if is_last_song:
-            return "./music"
+            return "./temp/music"
         
         if not image or image == "None":
-            return "./music_placeholder.png"
+            return "./assets/music_placeholder.png"
             
         request = SESSION.get(image, timeout=5) 
         if not request or not request.ok:
-            return "./music_placeholder.png" 
+            return "./assets/music_placeholder.png" 
         createImage(request.content)
         
-        return "./music"
+        return "./temp/music"
     except Exception:
-        return "./music_placeholder.png"
+        return "./assets/music_placeholder.png"
 
 def getPlayerData(properties) -> dict:
     """Get all relevant music and player data"""
@@ -133,7 +133,7 @@ def getPlayerData(properties) -> dict:
 
 def createCallback(properties):
     """Callback function to onPropertiesChanged, allows passing of main function player properties"""
-    def onPropertiesChanged(interface, properties_changed, invalidated):
+    def onPropertiesChanged():
         """Returns new player updated data"""
         data = getPlayerData(properties=properties)
         if data:
@@ -146,7 +146,7 @@ def main():
         DBusGMainLoop(set_as_default=True)
         bus = dbus.SessionBus()
 
-        player_name = playerAvailable(bus=bus)
+        player_name = playerAvailable(bus=bus) 
         if not player_name:
             print(json.dumps(MISSING_METADATA))
             return

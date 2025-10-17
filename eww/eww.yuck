@@ -1,1 +1,2 @@
 (include "./music.yuck")
+(include "./weather.yuck")

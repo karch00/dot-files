@@ -1,5 +1,4 @@
-(deflisten getData "python -u ./scripts/music/getmainmetadata.py"
-)
+(deflisten getData "python -u ./scripts/music/getmainmetadata.py")
 
 (defwidget imageContainer []
   (image

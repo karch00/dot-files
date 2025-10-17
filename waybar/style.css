@@ -16,7 +16,7 @@ window#waybar{
 	
 	min-width: 11.75rem;
 
-	border-radius: 20px;
+	border-radius: 12px;
 	border: @color2 2px solid;
 
 	margin-top: 10px;
@@ -39,7 +39,7 @@ window#waybar{
 }
 #workspaces button.active{
 	font-size: 1.25rem;
-	color: @color1;
+	color: @color5;
 }
 
 .media{
@@ -47,9 +47,9 @@ window#waybar{
 
 	font-size: 12px;
 
-	min-width: 42rem;
+	min-width: 42.2rem;
 
-	border-radius: 20px;
+	border-radius: 12px;
 	border: @color2 2px solid;
 
 	margin-top: 10px;
@@ -65,8 +65,8 @@ window#waybar{
 	font-size: 2rem;
 	font-weight: 800;
 	margin-top: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 
@@ -77,7 +77,7 @@ window#waybar{
 
   min-width: 10.5rem;
 
-	border-radius: 20px;
+	border-radius: 12px;
 	border: @color2 2px solid;
 
 	margin-top: 10px;
@@ -90,7 +90,7 @@ window#waybar{
 
 	min-width: 4.5rem;
 
-	border-radius: 20px;
+	border-radius: 12px;
 	border: @color2 2px solid;
 
 	margin-top: 10px;
@@ -103,7 +103,7 @@ window#waybar{
 
 	min-width: 4.5rem;
 
-	border-radius: 20px;
+	border-radius: 12px;
 	border: @color2 2px solid;
 
 	margin-top: 10px;
@@ -116,7 +116,7 @@ window#waybar{
 
 	min-width: 4.5rem;
 
-	border-radius: 20px;
+	border-radius: 12px;
 	border: @color2 2px solid;
 
 	margin-top: 10px;
@@ -129,7 +129,7 @@ window#waybar{
 
 	min-width: 4.5rem;
 
-	border-radius: 20px;
+	border-radius: 12px;
 	border: @color2 2px solid;
 
 	margin-top: 10px;
@@ -142,7 +142,7 @@ window#waybar{
 
 	min-width: 13.95rem;
 
-	border-radius: 20px;
+	border-radius: 12px;
 	border: @color2 2px solid;
 
 	margin-top: 10px;

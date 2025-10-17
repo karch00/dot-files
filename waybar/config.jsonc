@@ -25,42 +25,42 @@
     
     // Modules left
     "hyprland/workspaces": {
-	"disable-scroll": true,
-	"all-outputs": true,
-	"warp-on-scroll": true,
-	"format": "{icon}",
-	"format-icons": {
-		"1" : "",
-		"2" : "",
-		"3" : "",
-		"4" : "",
-		"5" : ""
-	},
-	"persistent-workspaces": {
-		"1" : [],
-		"2" : [],
-		"3" : [],
-		"4" : [],
-		"5" : []
-	}
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1" : "",
+            "2" : "",
+            "3" : "",
+            "4" : "",
+            "5" : ""
+        },
+        "persistent-workspaces": {
+            "1" : [],
+            "2" : [],
+            "3" : [],
+            "4" : [],
+            "5" : []
+        }
     },
     "pulseaudio": {
-	"tooltip": false,
-	"scroll-step": 1,
-	"format": "{icon}  {volume}%",
-	"format-muted": "  0%",
-	"format-icons": {
-	    "default": ["", "", ""]
-	},
-	"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "tooltip": false,
+        "scroll-step": 1,
+        "format": "{icon}  {volume}%",
+        "format-muted": "  0%",
+        "format-icons": {
+	        "default": ["", "", ""]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
     "custom/media": {
-	"format": "{text}",
-	"return-type": "json",
-	"escape": false,
-	"interval": 1,
-	"on-click": "open_music_widget",
-	"exec": "$HOME/.config/waybar/waybar_mediaplayer 2> /dev/null"
+        "format": "{text}",
+        "return-type": "json",
+        "escape": false,
+        "interval": 2,
+        "on-click": "open_widget music",
+        "exec": "$HOME/.config/waybar/waybar_mediaplayer 2> /dev/null"
     },
     
     /* Modules center */
@@ -75,26 +75,26 @@
 	    "escape": "false",
 	    "interval": 120,
 	    "exec" : "$HOME/.config/waybar/waybar_weather 2> /dev/null",
-	    "on-click": "$HOME/.config/waybar/waybar_weather 2> /dev/null"
+	    "on-click": "open_widget weather"
     },
     "network" : {
-	"tooltip": false,
-	"format-wifi": "  {ipaddr}",
-	"format-ethernet" : "  {ipaddr}",
-	"format-disconnected" : "󱘖  No internet"
+        "tooltip": false,
+        "format-wifi": "  {ipaddr}",
+        "format-ethernet" : "  {ipaddr}",
+        "format-disconnected" : "󱘖  No internet"
     },
     "cpu" : {
-	"tooltip": true,
-	"format" : "  {usage:2}%",
-	"interval": 10
+        "tooltip": true,
+        "format" : "  {usage:2}%",
+        "interval": 10
     },
     "memory" : {
-	"tooltip": false,
-	"format": "  {}%"
+        "tooltip": false,
+        "format": "  {}%"
     },
     "battery" : {
-	"tooltip": true,
-	"states": {
+        "tooltip": true,
+        "states": {
             "warning": 30,
             "critical": 10
         },

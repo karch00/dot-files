@@ -1,112 +1,98 @@
 #! /usr/bin/python3
 
-import requests
 import json
+import pathlib
 import time
-import os
-import socket
-from dotenv import load_dotenv
 
-load_dotenv()
-API_KEY: str | None = os.getenv("API_KEY") # openweatherapi.org API
-LAT: float = 50.6293 # Latitude
-LON: float = 3.0573 # Longitude
-UNITS: str = "metric" # standard | metric |imperial
-COUNT: int = 1 # Get only n next hours
-REQ_URL: str = f"https://api.openweathermap.org/data/2.5/forecast?lat={LAT}&lon={LON}&appid={API_KEY}&units={UNITS}&cnt={COUNT}"
-
-
-def classify_entries(req: dict) -> dict:
-    toreturn = {}
-    for entry in req["list"]:
-        toreturn[entry["dt"]] = entry
+WEATHER_FILE = f"{pathlib.Path.home()}/.config/scripts/weatherfetch/weather.json"
+ICON_MAP = {
+    0: ["󰖙", "󰖔"],
     
-    return toreturn
+    1: ["󰖙", "󰖔"],
+    2: ["󰖕", "󰼱"],
+    3: ["󰖐"],
 
-def create_time_file(file: str) -> None:
-    open(file, mode="x", encoding="utf-8")
-    with open(file, mode="w", encoding="utf-8") as f:
-        f.write("0")
+    45: ["󰖑"],
+    48: ["󰼰"],
 
-def update_time(file: str) -> None:
-    with open(file, mode="w", encoding="utf-8") as f:
-        f.truncate(0)
-        f.write(str(time.time()))
+    51: ["󰼳"],
+    53: ["󰼳"],
+    55: ["󰼳"],
 
-def get_last_update(file: str) -> float:
-    with open(file, mode="r", encoding="utf-8") as f:
-       return float(f.read())
+    56: ["󰙿"],
+    57: ["󰙿"],
 
-def internet_available() -> bool:
-    try:
-        s = socket.create_connection(("1.1.1.1", 53))
-        s.close()
-        return True
-    except Exception:
-        return False
- 
-def main():
-    # Create update file
-    # FILE: str = "/home/karch/.config/waybar/weather_last_update"
-    # if not os.path.exists(FILE):
-    #     create_time_file(FILE)
-    
-    # Check for internet connection 
-    if not internet_available():
-        return json.dumps({"text": " No internet", "class": "weather"})
+    61: ["󰖗"],
+    63: ["󰖗"],
+    65: ["󰖖"],
 
-    # Check for last update 
-    # last_update = get_last_update(FILE)
-    # if (time.time() - last_update) < 300:
-    #     print(time.time() - last_update)
-    #     return
-    # update_time(FILE)
+    66: ["󰙿"],
+    67: ["󰙿"],
 
-    # Get request and entries
-    err_text = None
-    try:
-        req = requests.get(REQ_URL, timeout=10)
-    except Exception:
-        err_text = " Timed out"
-        req = None
-    
-    if not req:
-        err_text = " API Error"
-    if not req or not req.ok:
-        return json.dumps({"text": err_text, "class": "weather"})
-    
-    content = json.loads(req.content)
-    weather_report = classify_entries(req=content)
-    
-    # Use for multiple entries 
-    # Advance 1 entry if next entry timestamp difference with current time is less than 15 minutes
-    # current_time = int(time.time())
-    # next_timestamp = weather_report[list(weather_report.keys())[1]]["dt"] 
-    # if next_timestamp - current_time <= 900:
-    #     weather_report.pop(0)
-    
-    # Generate text
-    entry_keys = list(weather_report.keys())
-    icons = {"Rain": "", "Clouds" : "", "Snow": "", "Clear": ""}
-    weather_names = {"Rain": "Rainy", "Clouds": "Cloudy", "Snow": "Snowy", "Clear": "Clear"}
-    text = ""
-    for idx in range(COUNT):
-        current_entry = weather_report[entry_keys[idx]]
+    71: ["󰖘"],
+    73: ["󰖘"],
+    75: ["󰼶"],
 
-        weather = current_entry["weather"][0]["main"]
-        precipitation = int(current_entry["pop"] * 100)
-        temp = int(current_entry["main"]["temp"])
+    77: ["󰼶"],
 
-        text += f"{icons[weather]} {weather_names[weather]} - {precipitation}% - {temp}ºC"
-        # Use for multiple entries
-        # text += f"{icons[weather]} {temp}ºC"
-        # text += "  " if idx != 2 else ""
-    
-    return json.dumps({"text": text, "class": "weather"})
-        
+    80: ["󰖗"],
+    81: ["󰖗"],
+    82: ["󰖖"],
+
+    85: ["󰖘"],
+    86: ["󰼶"],
+
+    95: ["󰙾"],
+
+    96: ["󰖒"],
+    99: ["󰖒"]
+}
+
+def getJsonFile(filepath: str) -> dict:
+    """Gets the specified Json file data"""
+    with open(file=filepath, mode="r", encoding="utf-8") as f:
+        return json.load(fp=f)
+
+def getIconIndex(daily_sunrise: list, daily_sunset: list) -> int:
+    """Gets the icon index depending on if day or night
+
+    Params:
+    - daily_sunrise(list): list of daily sunrise unix timestamps
+    - daily_sunset(list): list of daily sunset unix timestamps
+
+    Returns:
+    - int: index
+    """
+    current_time = time.time()
+    sunrise = daily_sunrise[0]
+    sunset = daily_sunset[0]
+
+    if current_time > sunrise and current_time < sunset:
+        return 0
+    else:
+        return 1
+
+
+def main() -> None:
+    json_data = getJsonFile(WEATHER_FILE)
+    current = json_data["current"]
+
+    code = current["weather_code"]
+    temp = current["temperature_2m"]
+    wind = current["wind_speed_10m"]
+    precipitation = current["precipitation"]
+
+    index = getIconIndex(json_data["daily"]["sunrise"], json_data["daily"]["sunset"]) 
+    icon = ICON_MAP[code][index] if code in [0, 1, 2] else ICON_MAP[code][0]
+    text = f"{icon}  {temp}ºC  {wind}km/h  {precipitation}%"
+
+    print(json.dumps( {"text": text, "class": "weather"} ))
+
+
+
 
 if __name__ == "__main__":
-    weather = main()
-    print(weather)
-
-
+    try:
+        main()
+    except Exception:
+        print(json.dumps({"text": "󰼷 No weather data", "class": "weather"}))
