@@ -82,7 +82,7 @@ compinit
 bashcompinit
 
 # plugins
-plugins=(git colorize)
+plugins=(git colorize cat)
 
 zplug "junegunn/fzf"
 zplug "Aloxaf/fzf-tab"
@@ -126,8 +126,8 @@ zstyle ":fzf-tab:*" fzf-flags "--height=15" "--layout=reverse" "--border=rounded
 
 # Aliases
 alias astroterm="astroterm --color --constellations --speed 6000 --fps 64 --city paris -t 10"
-# alias cat="ccat"
-# alias cp="cpv -hhh"
+alias eza="eza -l --icons=always -M -h --git --git-repos -@"
+alias ls="eza"
 
 # Starship
 eval "$(starship init zsh)"

@@ -2,6 +2,7 @@
 
 * { 
 	font-family: JetBrains Mono Nerd Font;
+  font-size: 0.9rem;
 }
 window#waybar{
 	background: transparent;
@@ -12,14 +13,14 @@ window#waybar{
 
 /* Left */
 #workspaces {
-	background: alpha(@color0, 0.8);
+	background: alpha(@color0, 0.7);
 	
 	min-width: 11.75rem;
 
 	border-radius: 12px;
-	border: @color2 2px solid;
-
-	margin-top: 10px;
+	border: @color2 1px solid;
+	
+  margin-top: 0.6rem;
 	margin-right: 10px;
 }
 #workspaces button {
@@ -43,19 +44,19 @@ window#waybar{
 }
 
 .media{
-	background: alpha(@color0, 0.8);
+	background: alpha(@color0, 0.7);
 
 	font-size: 12px;
 
-	min-width: 42.2rem;
+	min-width: 40rem;
 
-	border-radius: 12px;
-	border: @color2 2px solid;
-
-	margin-top: 10px;
+	border-radius: 6px;
+	border: @color2 1px solid;	
 	
 	padding-left: 10px;
 	padding-right: 10px;
+
+  margin-top: 0.6rem;
 }
 
 
@@ -64,91 +65,88 @@ window#waybar{
 #clock {
 	font-size: 2rem;
 	font-weight: 800;
-	margin-top: 10px;
+
+  margin-bottom: -0.6rem;
 	margin-left: 20px;
 	margin-right: 20px;
 }
 
-
-
 /* Right */
 #network {
-	background: alpha(@color0, 0.8);
+	background: alpha(@color0, 0.7);
 
   min-width: 10.5rem;
 
-	border-radius: 12px;
-	border: @color2 2px solid;
+	border-radius: 6px;
+	border: @color2 1px solid;
 
-	margin-top: 10px;
+  margin-top: 0.6rem;	
 	margin-right: 10px;
 
 	padding: 0 10px;
 }
 #pulseaudio {
-	background: alpha(@color0, 0.8);
+	background: alpha(@color0, 0.7);
 
 	min-width: 4.5rem;
 
-	border-radius: 12px;
-	border: @color2 2px solid;
+	border-radius: 6px;
+	border: @color2 1px solid;
 
-	margin-top: 10px;
+  margin-top: 0.6rem;
 	margin-right: 10px;
 
 	padding: 0 10px;
 }
 #cpu {
-	background: alpha(@color0, 0.8);
+	background: alpha(@color0, 0.7);
 
 	min-width: 4.5rem;
 
-	border-radius: 12px;
-	border: @color2 2px solid;
+	border-radius: 6px;
+	border: @color2 1px solid;
 
-	margin-top: 10px;
+  margin-top: 0.6rem;
 	margin-right: 10px;
 
 	padding: 0 10px;
 }
 #memory {
-	background: alpha(@color0, 0.8);
+	background: alpha(@color0, 0.7);
 
 	min-width: 4.5rem;
 
-	border-radius: 12px;
-	border: @color2 2px solid;
-
-	margin-top: 10px;
+	border-radius: 6px;
+	border: @color2 1px solid;
+	
+  margin-top: 0.6rem;
 	margin-right: 10px;
 
 	padding: 0 10px;
 }
 #battery {
-	background: alpha(@color0, 0.8);
+	background: alpha(@color0, 0.7);
 
 	min-width: 4.5rem;
 
-	border-radius: 12px;
-	border: @color2 2px solid;
-
-	margin-top: 10px;
+	border-radius: 6px;
+	border: @color2 1px solid;
+	
+  margin-top: 0.6rem;
 	margin-right: 10px;
 
 	padding: 0 10px;
 }
 .weather {
-	background: alpha(@color0, 0.8);
+	background: alpha(@color0, 0.7);
 
 	min-width: 13.95rem;
 
-	border-radius: 12px;
-	border: @color2 2px solid;
-
-	margin-top: 10px;
+	border-radius: 6px;
+	border: @color2 1px solid;
+	
+  margin-top: 0.6rem;
 	margin-right: 10px;
-
-	padding: 0 10px;
 }
 
 

@@ -1,7 +1,0 @@
-#! /bin/usr/bash
-
-if [ "$(eww active-windows | grep music)" ]; then
-  eww close music
-else
-  eww open music
-fi

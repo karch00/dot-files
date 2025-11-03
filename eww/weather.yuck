@@ -5,22 +5,21 @@
 
 
 (defwidget date []
-  (label
-    :text {displayWeather == "hour" ? "${getWeatherData.current.time}" : "${getWeatherData.daily[0].time}"}
-    :class "date"
-    :valign "start"
+  (eventbox
+    :cursor "pointer"
+    :onclick "./scripts/weather/switch.sh"
+    (label
+      :text {displayWeather == "hour" ? "${getWeatherData.current.time}" : "${getWeatherData.daily[0].time}"}
+      :class "date"
+      :valign "start"
+    )
   )
 )
 
 (defwidget icon []
-  (eventbox
-    :onclick "./scripts/weather/switch.sh"
-    :cursor "pointer"
-    (label
-      :text {displayWeather == "hour" ? "${getWeatherData.current.icon}" : "${getWeatherData.daily[0].icon}"}
-      :class "icon"
-      :halign "center"
-    )
+  (label
+    :text {displayWeather == "hour" ? "${getWeatherData.current.icon}" : "${getWeatherData.daily[0].icon}"}
+    :class "icon"
   )
 )
 
@@ -235,7 +234,7 @@
   (box 
     :orientarion "h"
     :halign "center"
-    :spacing {displayWeather == "hour" ? 40 : 25}
+    :spacing {displayWeather == "hour" ? 45 : 34}
     (time0)
     (time1)
     (time2)
@@ -245,7 +244,7 @@
   (box
     :orientation "h"
     :halign "center"
-    :spacing {displayWeather == "hour" ? 40 : 25}
+    :spacing {displayWeather == "hour" ? 45 : 34}
     (time3)
     (time4)
     (time5)
@@ -275,7 +274,7 @@
 (defwindow weather
   :monitor 0
   :geometry (geometry
-    :x "1030px"
+    :x "1055px"
     :y "4px"
     :width "270px"
     :height "400px"

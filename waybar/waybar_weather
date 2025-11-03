@@ -4,7 +4,7 @@ import json
 import pathlib
 import time
 
-WEATHER_FILE = f"{pathlib.Path.home()}/.config/scripts/weatherfetch/weather.json"
+WEATHER_FILE = f"{pathlib.Path.home()}/.scripts/weatherfetch/weather.json"
 ICON_MAP = {
     0: ["󰖙", "󰖔"],
     
@@ -84,7 +84,7 @@ def main() -> None:
 
     index = getIconIndex(json_data["daily"]["sunrise"], json_data["daily"]["sunset"]) 
     icon = ICON_MAP[code][index] if code in [0, 1, 2] else ICON_MAP[code][0]
-    text = f"{icon}  {temp}ºC  {wind}km/h  {precipitation}%"
+    text = f"{icon}  {int(temp)}ºC  {int(wind)}km/h  {int(precipitation)}%"
 
     print(json.dumps( {"text": text, "class": "weather"} ))
 
