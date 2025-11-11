@@ -12,10 +12,11 @@ Item {
 
     property string avatar: "file:///var/lib/AccountsService/icons/" + userModel.lastUser
     property string wallpaper: "file:///usr/share/backgrounds/main_wp"
+    property string clockfg: Colors.color7
     property string foreground: Colors.color15
     property string background: Colors.color0
     property string border1: Colors.color1
-    property string border2: Colors.color2
+    property string border2: Colors.color1
 
 
     // Load
@@ -35,9 +36,9 @@ Item {
     // Clock and date
     Text {
         id: clock
-        x: 724
-        y: 174
-        color: foreground
+        x: 274
+        y: 140
+        color: clockfg
         text: Qt.formatTime(new Date(), "hh:mm:ss")
         font.pixelSize: 98
         horizontalAlignment: Text.AlignHCenter
@@ -46,9 +47,9 @@ Item {
     }
     Text {
         id: clockdate
-        x: 865
-        y: 285
-        color: foreground
+        x: 415
+        y: 290
+        color: clockfg
         text: Qt.formatDate(new Date(), "dd/MM/yyyy")
         font.pixelSize: 32
         font.styleName: "SemiBold"
@@ -77,18 +78,18 @@ Item {
         width: 600
         height: 400
         color: background
-        radius: 10
+        radius: 0
         border.color: border1
-        border.width: 2
+        border.width: 0
         z: 1
-        x: 660
+        x: 210
         y: 409
 
         // Welcome
         Text {
-	    id: welcometext
-	    x: 220	
-            y: 28
+            id: welcometext
+            x: 220	
+            y: 20
             color: foreground
             text: qsTr("Welcome")
             font.pixelSize: 38
@@ -143,14 +144,11 @@ Item {
         // Password
         Rectangle {
             id: passwordcontainer
-            x: 190
+            x: 191
             y: 289
             width: 220
             height: 35
             color: background
-            radius: 5
-            border.color: border2
-            border.width: 1.5
 
             TextInput {
                 id: passwordinput
@@ -158,6 +156,7 @@ Item {
                 y: 6
                 width: 202
                 height: 25
+                horizontalAlignment: Text.AlignHCenter
                 color: foreground
                 font.pixelSize: 20
                 maximumLength: 14
@@ -167,7 +166,7 @@ Item {
                 selectByMouse: true
 
                 HoverHandler {
-                    cursorShape: Qt.IBeamCursor
+                  cursorShape: Qt.IBeamCursor
                 }
 
                 onAccepted: {
@@ -235,33 +234,33 @@ Item {
     
     // Login panel blur
     
-    ShaderEffectSource {
-        id: blursource
-        sourceItem: wP
-        sourceRect: Qt.rect(loginpanel.x, loginpanel.y, loginpanel.width,
-                            loginpanel.height)
-        live: true
-        hideSource: false
-        width: loginpanel.width
-        height: loginpanel.height
-        x: 660
-        y: 409
-        z: 0
-    }
-    FastBlur {
-        id: loginblur
-        anchors.fill: blursource
-        source: blursource
-        radius: 32
-        z: 0
-    }
+   // ShaderEffectSource {
+   //     id: blursource
+   //     sourceItem: wP
+   //     sourceRect: Qt.rect(loginpanel.x, loginpanel.y, loginpanel.width,
+   //                         loginpanel.height)
+   //     live: true
+   //     hideSource: false
+   //     width: loginpanel.width
+   //     height: loginpanel.height
+   //     x: 660
+   //     y: 409
+   //     z: 0
+   // }
+   // FastBlur {
+   //     id: loginblur
+   //     anchors.fill: blursource
+   //     source: blursource
+   //     radius: 0
+   //     z: 0
+   // }
 
     // Shutdown button
     Button {
         id: shutdownbutton
-        x: 670
-	y: 812
-	z: 1
+        x: 220
+	      y: 775
+	      z: 1
         width: 25
         height: 25
         flat: true
@@ -274,10 +273,10 @@ Item {
 
             Image {
                 id: shutdownimage
-		anchors.centerIn: parent
-		antialiasing: true
-		smooth: true
-		mipmap: true
+                anchors.centerIn: parent
+                antialiasing: true
+                smooth: true
+                mipmap: true
 
                 source: "images/shutdown.svg"
                 width: 15
@@ -303,7 +302,7 @@ Item {
             color: background
             radius: 5
             border.color: border1
-            border.width: 1
+            border.width: 0
         }
 
         onClicked: sddm.powerOff()
@@ -312,9 +311,9 @@ Item {
     // Restart Button
     Button {
         id: restartbutton
-        x: 700
-	y: 812
-	z: 1
+        x: 250
+	      y: 775
+      	z: 1
         width: 25
         height: 25
         flat: true
@@ -327,10 +326,10 @@ Item {
 
             Image {
                 id: restartimage
-		anchors.centerIn: parent
-		antialiasing: true
-		smooth: true
-		mipmap: true
+                anchors.centerIn: parent
+                antialiasing: true
+                smooth: true
+                mipmap: true
 
                 source: "images/restart.svg"
                 width: 15
@@ -355,7 +354,7 @@ Item {
             color: background
             radius: 5
             border.color: border1
-            border.width: 1
+            border.width: 0
         }
 
         onClicked: sddm.reboot()
@@ -364,25 +363,26 @@ Item {
     // Suspend button
     Button {
         id: suspendbutton
-        x: 730
-        y: 812
+        x: 280
+        y: 775
+        z: 1
         width: 25
         height: 25
         flat: true
 
         contentItem: Item {
             x: 0
-	    y: 6
-	    z: 1
+            y: 6
+            z: 1
             width: suspendbutton.width
             height: suspendbutton.height
 
             Image {
                 id: suspendimage
                 anchors.centerIn: parent
-		antialiasing: true
-		smooth: true
-		mipmap: true
+                antialiasing: true
+                smooth: true
+                mipmap: true
 
                 source: "images/suspend.svg"
                 width: 15
@@ -407,7 +407,7 @@ Item {
             color: background
             radius: 5
             border.color: border1
-            border.width: 1
+            border.width: 0
         }
 
         onClicked: sddm.suspend()

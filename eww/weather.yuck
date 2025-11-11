@@ -72,6 +72,7 @@
     :orientation "v"
     :halign "center"
     :valign "center"
+    :class "time-box"
     (label
       :text {displayWeather == "hour" ? "${getWeatherData.hourly[0].time}" : "${getWeatherData.daily[1].time}"}
       :class "box-date"
@@ -81,7 +82,7 @@
       :class "box-icon"
     )
     (label
-      :text {displayWeather == "hour" ? "${getWeatherData.hourly[0].temperature_2m}ºC" : "${getWeatherData.daily[1].temperature_2m_min} - ${getWeatherData.daily[1].temperature_2m_max}ºC"}
+      :text {displayWeather == "hour" ? "${getWeatherData.hourly[0].temperature_2m}ºC" : "${getWeatherData.daily[1].temperature_2m_min}-${getWeatherData.daily[1].temperature_2m_max}ºC"}
       :class "box-temp"
     )
     (label
@@ -99,6 +100,7 @@
     :orientation "v"
     :halign "center"
     :valign "center"
+    :class "time-box"
     (label
       :text {displayWeather == "hour" ? "${getWeatherData.hourly[1].time}" : "${getWeatherData.daily[2].time}"}
       :class "box-date"
@@ -108,7 +110,7 @@
       :class "box-icon"
     )
     (label
-      :text {displayWeather == "hour" ? "${getWeatherData.hourly[1].temperature_2m}ºC" : "${getWeatherData.daily[2].temperature_2m_min} - ${getWeatherData.daily[2].temperature_2m_max}ºC"}
+      :text {displayWeather == "hour" ? "${getWeatherData.hourly[1].temperature_2m}ºC" : "${getWeatherData.daily[2].temperature_2m_min}-${getWeatherData.daily[2].temperature_2m_max}ºC"}
       :class "box-temp"
     )
     (label
@@ -126,6 +128,7 @@
     :orientation "v"
     :halign "center"
     :valign "center"
+    :class "time-box"
     (label
       :text {displayWeather == "hour" ? "${getWeatherData.hourly[2].time}" : "${getWeatherData.daily[3].time}"}
       :class "box-date"
@@ -135,7 +138,7 @@
       :class "box-icon"
     )
     (label
-      :text {displayWeather == "hour" ? "${getWeatherData.hourly[2].temperature_2m}ºC" : "${getWeatherData.daily[3].temperature_2m_min} - ${getWeatherData.daily[3].temperature_2m_max}ºC"}
+      :text {displayWeather == "hour" ? "${getWeatherData.hourly[2].temperature_2m}ºC" : "${getWeatherData.daily[3].temperature_2m_min}-${getWeatherData.daily[3].temperature_2m_max}ºC"}
       :class "box-temp"
     )
     (label
@@ -153,6 +156,7 @@
     :orientation "v"
     :halign "center"
     :valign "center"
+    :class "time-box"
     (label
       :text {displayWeather == "hour" ? "${getWeatherData.hourly[3].time}" : "${getWeatherData.daily[4].time}"}
       :class "box-date"
@@ -162,7 +166,7 @@
       :class "box-icon"
     )
     (label
-      :text {displayWeather == "hour" ? "${getWeatherData.hourly[3].temperature_2m}ºC" : "${getWeatherData.daily[4].temperature_2m_min} - ${getWeatherData.daily[4].temperature_2m_max}ºC"}
+      :text {displayWeather == "hour" ? "${getWeatherData.hourly[3].temperature_2m}ºC" : "${getWeatherData.daily[4].temperature_2m_min}-${getWeatherData.daily[4].temperature_2m_max}ºC"}
       :class "box-temp"
     )
     (label
@@ -180,6 +184,7 @@
     :orientation "v"
     :halign "center"
     :valign "center"
+    :class "time-box"
     (label
       :text {displayWeather == "hour" ? "${getWeatherData.hourly[4].time}" : "${getWeatherData.daily[5].time}"}
       :class "box-date"
@@ -189,7 +194,7 @@
       :class "box-icon"
     )
     (label
-      :text {displayWeather == "hour" ? "${getWeatherData.hourly[4].temperature_2m}ºC" : "${getWeatherData.daily[5].temperature_2m_min} - ${getWeatherData.daily[5].temperature_2m_max}ºC"}
+      :text {displayWeather == "hour" ? "${getWeatherData.hourly[4].temperature_2m}ºC" : "${getWeatherData.daily[5].temperature_2m_min}-${getWeatherData.daily[5].temperature_2m_max}ºC"}
       :class "box-temp"
     )
     (label
@@ -207,6 +212,7 @@
     :orientation "v"
     :halign "center"
     :valign "center"
+    :class "time-box"
     (label
       :text {displayWeather == "hour" ? "${getWeatherData.hourly[5].time}" : "${getWeatherData.daily[6].time}"}
       :class "box-date"
@@ -216,7 +222,7 @@
       :class "box-icon"
     )
     (label
-      :text {displayWeather == "hour" ? "${getWeatherData.hourly[5].temperature_2m}ºC" : "${getWeatherData.daily[6].temperature_2m_min} - ${getWeatherData.daily[6].temperature_2m_max}ºC"}
+      :text {displayWeather == "hour" ? "${getWeatherData.hourly[5].temperature_2m}ºC" : "${getWeatherData.daily[6].temperature_2m_min}-${getWeatherData.daily[6].temperature_2m_max}ºC"}
       :class "box-temp"
     )
     (label
@@ -233,8 +239,8 @@
 (defwidget hexaSubContainer1 []
   (box 
     :orientarion "h"
-    :halign "center"
-    :spacing {displayWeather == "hour" ? 45 : 34}
+    :halign "fill"
+    :spacing {displayWeather == "hour" ? 45 : 37}
     (time0)
     (time1)
     (time2)
@@ -243,7 +249,7 @@
 (defwidget hexaSubContainer2 []
   (box
     :orientation "h"
-    :halign "center"
+    :halign "fill"
     :spacing {displayWeather == "hour" ? 45 : 34}
     (time3)
     (time4)
@@ -274,7 +280,7 @@
 (defwindow weather
   :monitor 0
   :geometry (geometry
-    :x "1055px"
+    :x "530px"
     :y "4px"
     :width "270px"
     :height "400px"
