@@ -24,7 +24,7 @@ window#waybar{
 	margin-right: 10px;
 }
 #workspaces button {
-	color: @background;
+	color: @foreground;
 
 	padding: 0 8px;
 
@@ -38,7 +38,7 @@ window#waybar{
 	outline: none;
 }
 #workspaces button.active{
-	color: @color5;
+	color: @highlights;
 }
 
 .media{
