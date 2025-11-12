@@ -104,7 +104,7 @@ function executeSearch() {
     const query = formData.get("search");
  
     if (query) {
-        window.open(`https://qwant.com/?q=${encodeURIComponent(query)}&t=web`);
+        window.open(`https://search.brave.com/search?q=${encodeURIComponent(query)}&source=desktop`);
     }
     else {
         counter+=1;
