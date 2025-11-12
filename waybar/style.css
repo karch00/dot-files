@@ -68,18 +68,18 @@ window#waybar{
 }
 
 
-/* Central */
+/* Right */
 #clock {
   color: @foreground ;
-	font-size: 2rem;
-	font-weight: 800;
 
-  margin-bottom: -0.6rem;
-	margin-left: 20px;
-	margin-right: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  margin-top: 0.6rem;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-/* Right */
 #network {
 	background: transparent;
 
@@ -87,7 +87,7 @@ window#waybar{
 
 	border: none;
 
-  margin-top: 0.6rem;	
+  margin-top: 0.6rem;
 
 	padding: 0 10px;
 }

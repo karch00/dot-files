@@ -13,14 +13,14 @@
 	    "custom/weather"
     ],
     "modules-center": [
-	    "clock"
     ],
     "modules-right": [
 	    "network",
 	    "pulseaudio",
 	    "cpu",
 	    "memory",
-	    "battery"
+	    "battery",
+      "clock"
     ],
     
     // Modules left
@@ -63,7 +63,9 @@
     
     /* Modules center */
     "clock" : {
-      "tooltip" : false
+      "tooltip" : false,
+      "format" : "[{:%H:%M}]",
+      "interval" : 1
     },
     
     /* Modules right */
@@ -84,7 +86,7 @@
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
     "cpu" : {
-        "tooltip": true,
+        "tooltip": false,
         "format" : "  {usage:2}%",
         "interval": 10
     },
@@ -93,7 +95,7 @@
         "format": "  {}%"
     },
     "battery" : {
-        "tooltip": true,
+        "tooltip": false,
         "states": {
             "warning": 30,
             "critical": 10
