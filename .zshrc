@@ -97,7 +97,7 @@ export FZF_TMUX_OPTS="-p80%,60%"
 zstyle ":autocomplete:*" widget-style menu-complete
 zstyle ":autocomplete:*" fzf-completion yes
 zstyle ":fzf-tab:*" fzf-command ftb-tmux-popup
-zstyle ":fzf-tab:*" fzf-flags "--height=15" "--layout=reverse" "--border=rounded" "--scroll-off=0" "--color=border:2,pointer:6,bg+:0,info:15"
+zstyle ":fzf-tab:*" fzf-flags "--pointer=>" "--height=15" "--layout=reverse" "--border=rounded" "--scroll-off=0" "--ansi" "--color=border:7,pointer:8,bg+:0,fg+:7,hl:7,hl+:7,info:8,prompt:8"
 
 # User configuration
 
@@ -126,8 +126,7 @@ zstyle ":fzf-tab:*" fzf-flags "--height=15" "--layout=reverse" "--border=rounded
 
 # Aliases
 alias astroterm="astroterm --color --constellations --speed 6000 --fps 64 --city paris -t 10"
-alias eza="eza -l --icons=always -M -h --git --git-repos -@"
-alias ls="eza"
+alias ls="eza -l --icons=always -M -h --git --git-repos -@ --color=never"
 
 # Starship
 eval "$(starship init zsh)"
