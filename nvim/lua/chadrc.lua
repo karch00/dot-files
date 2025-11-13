@@ -38,7 +38,7 @@ M.base46 = {
 
         statusline_bg = "#2c2432",
         lightbg = "#413846",
-        pmenu_bg = "#2c2432",
+        pmenu_bg = "#606060",
         folder_bg = "#fae6cb"
       },
       base_16 = {
@@ -58,7 +58,7 @@ M.base46 = {
         base0D = "#7874b9",
         base0E = "#bf70bd",
         base0F = "#989898"
-      }, 
+      },
     },
   },
   theme = "yoru"
