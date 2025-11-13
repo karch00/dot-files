@@ -26,6 +26,7 @@ body {
     align-items: center;
 
     overflow:hidden;
+    overflow-x: scroll;
     
     background: var(--background);
 }
@@ -169,6 +170,7 @@ main {
     background: #222222;
 
     width: 12rem;
+    min-width: 12rem;
 
     border: var(--foreground) solid 1px;
 

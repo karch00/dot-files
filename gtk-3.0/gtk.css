@@ -1,0 +1,42 @@
+@define-color bg #2c2432;
+@define-color bg-highlight #3c3442;
+@define-color fg #fae6cb;
+@define-color accent #3c6e50;
+
+* {
+  background-color: @bg;
+  background-image: none;
+  
+  color: @fg;
+
+  border-color: @fg;
+  outline: @fg;
+
+  text-shadow: none;
+  box-shadow: none;
+  filter: none;
+
+  -gtk-icon-shadow: none;
+}
+
+button box,
+button * {
+  background-image: none;
+  background-color: transparent;
+}
+button:hover,
+button:active,
+button:selected{
+  background-color: @bg-highlight;
+}
+
+menuitem box,
+menuitem * {
+  background-image: none;
+  background-color: transparent;
+}
+menuitem:hover,
+menuitem:active,
+menuitem:selected {
+  background-color: @bg-highlight;
+}
