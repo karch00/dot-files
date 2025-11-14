@@ -26,10 +26,10 @@ modal_fg = "#2c2432"
 
 # ========= Special Color =========
 cursor = "#c1a887"
-correct = "#7ed676"
-error = "#c1a887"
-hint = "#c1a887"
-cancel = "#3549ff"
+correct = "#7cbf72"
+error = "#db5b57"
+hint = "#7874b9"
+cancel = "#f6d56b"
 
 # ========= File Panel Special Items =========
 file_panel_top_directory_icon = "#c1a887"
