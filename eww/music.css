@@ -18,7 +18,7 @@
 .progress-bar highlight {
   min-height: 5px;
 
-  background: @color6;
+  background: @accent;
 
   border: none;
 }
@@ -40,7 +40,7 @@
 .volume-bar highlight {
   min-height: 5px;
 
-  background: @color6;
+  background: @accent;
   
   border: none;
 }
