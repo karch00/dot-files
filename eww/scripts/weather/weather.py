@@ -59,19 +59,21 @@ def getWeatherJson(filepath: str) -> dict:
     with open(file=filepath, mode="r", encoding="utf-8") as f:
         return json.load(fp=f)
 
-def getIconIndex(sunset: int, timestamp: None | int = None) -> int:
-    """Gets the icon index respective to unix timestamp
+def getIconIndex(daily_sunrise: list, daily_sunset: list) -> int:
+    """Gets the icon index depending on if day or night
 
     Params:
-    - sunset(int): sunset unix timestamp
-    - timestamp(int): unix timestamp to compare, optional
+    - daily_sunrise(list): list of daily sunrise unix timestamps
+    - daily_sunset(list): list of daily sunset unix timestamps
 
     Returns:
     - int: index
     """
-    current_time = timestamp or time.time()
-    
-    if current_time <= sunset:
+    current_time = time.time()
+    sunrise = daily_sunrise[0]
+    sunset = daily_sunset[0]
+
+    if current_time > sunrise and current_time < sunset:
         return 0
     else:
         return 1
@@ -115,8 +117,9 @@ def getHourlyInfo(hourly: dict, daily: dict) -> list:
         rain = hourly["rain"][idx]
         snow = hourly["snowfall"][idx]
 
-        sunset = daily["sunset"][ timestamp >=daily["sunset"][1] ]
-        icon = ICON_MAP[code][getIconIndex(sunset, timestamp)] if code in [0, 1, 2] else ICON_MAP[code][0]
+        sunset = daily["sunset"]
+        sunrise = daily["sunrise"]
+        icon = ICON_MAP[code][getIconIndex(sunrise, sunset)] if code in [0, 1, 2] else ICON_MAP[code][0]
 
         toreturn.append({
             "time": time.strftime("%H:%M", time.localtime(timestamp)),
@@ -170,9 +173,6 @@ def getDailyInfo(daily: dict) -> list:
 
 
 def main() -> None:
-    global WEATHER_FILE
-    global ICON_MAP
-
     jsondata = getWeatherJson(WEATHER_FILE)
  
     current = jsondata["current"]
@@ -183,8 +183,9 @@ def main() -> None:
     current["rain"] = int(current["rain"])
     current["snowfall"] = int(current["snowfall"])
     
-    sunset = jsondata["daily"]["sunset"][0]
-    current["icon"] = ICON_MAP[current["weather_code"]][getIconIndex(sunset)] if current["weather_code"] in [0, 1, 2] else ICON_MAP[current["weather_code"]][0]
+    sunset = jsondata["daily"]["sunset"]
+    sunrise = jsondata["daily"]["sunrise"]
+    current["icon"] = ICON_MAP[current["weather_code"]][getIconIndex(sunrise, sunset)] if current["weather_code"] in [0, 1, 2] else ICON_MAP[current["weather_code"]][0]
 
     hourly = getHourlyInfo(jsondata["hourly"], jsondata["daily"])
     daily = getDailyInfo(jsondata["daily"])
