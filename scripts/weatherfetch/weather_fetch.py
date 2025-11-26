@@ -8,7 +8,7 @@ import pathlib
 SESSION = requests.Session()
 GEOLOCATION_URL = "https://api.ipbase.com/v2/info"
 WEATHER_URL = "https://api.open-meteo.com/v1/forecast?latitude=%%LAT%%&longitude=%%LON%%&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max,rain_sum,snowfall_sum,weather_code,sunrise,sunset&hourly=temperature_2m,precipitation_probability,rain,wind_speed_10m,snowfall,weather_code&current=temperature_2m,precipitation,rain,snowfall,wind_speed_10m,weather_code&timezone=Europe%2FBerlin&timeformat=unixtime"
-WEATHER_FILE = f"{pathlib.Path.home()}/.config/scripts/weatherfetch/weather.json"
+WEATHER_FILE = f"{pathlib.Path.home()}/.scripts/weatherfetch/weather.json"
 DEFAULT_TEMPLATE = {
     "updated": 0,
     "data": None,
@@ -31,8 +31,6 @@ def getGeolocation(url : str) -> tuple:
     Returns:
     - tuple: langitude, longitude
     """
-    global SESSION
-
     req = SESSION.get(url)
     if not req.ok:
         return (50.6937, 3.1744) # Default Lille
@@ -51,8 +49,6 @@ def getWeather(base_url: str, lat: int, lon: int) -> dict | None:
     - lat(int): latitude
     - lon(int): longitude 
     """
-    global SESSION
-
     url = base_url.replace("%%LAT%%", str(lat))
     url = url.replace("%%LON%%", str(lon))
 
@@ -68,8 +64,6 @@ def ensureFileExists(filepath: str) -> None:
     Params:
     - filepath(str): File path
     """
-    global DEFAULT_TEMPLATE
-
     if not os.path.exists(filepath):
         with open(filepath, mode="x", encoding="utf-8") as f:
             json.dump(fp=f, obj=DEFAULT_TEMPLATE)
@@ -99,15 +93,13 @@ def writeToJson(filepath: str, content: dict) -> None:
 
 
 
-def main() -> None:
-    global WEATHER_FILE, GEOLOCATION_URL, WEATHER_URL, SESSION
-   
+def main() -> None: 
     ensureFileExists(WEATHER_FILE)
 
     while True:
         last_weather_data = getJsonContents(filepath=WEATHER_FILE)
         time_difference = time.time() - last_weather_data["updated"]
-        if time_difference < 1800:
+        if time_difference < 300:
             time.sleep(time_difference + 1)
             continue
 
