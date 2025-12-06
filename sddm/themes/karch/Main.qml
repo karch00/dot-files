@@ -6,9 +6,8 @@ import "colors.js" as Colors
 
 Item {
     id: canvas
-    width: 1920
-    height: 1080
-
+    width: 2560
+    height: 1440
 
     property string avatar: "file:///var/lib/AccountsService/icons/" + userModel.lastUser
     property string wallpaper: "file:///usr/share/backgrounds/main_wp"
@@ -36,24 +35,24 @@ Item {
     // Clock and date
     Text {
         id: clock
-        x: 274
-        y: 140
+        x: 1050
+        y: 220
         color: clockfg
         text: Qt.formatTime(new Date(), "hh:mm:ss")
         font.pixelSize: 98
         horizontalAlignment: Text.AlignHCenter
         font.styleName: "SemiBold"
-        font.family: "JetBrains Mono"
+        font.family: "JetBrainsMono Nerd Font"
     }
     Text {
         id: clockdate
-        x: 415
-        y: 290
+        x: 1191
+        y: 355
         color: clockfg
         text: Qt.formatDate(new Date(), "dd/MM/yyyy")
         font.pixelSize: 32
         font.styleName: "SemiBold"
-        font.family: "JetBrains Mono"
+        font.family: "JetBrainsMono Nerd Font"
     }
     Timer {
         id: clocktimer
@@ -82,8 +81,8 @@ Item {
         border.color: border1
         border.width: 0
         z: 1
-        x: 210
-        y: 409
+        x: 986
+        y: 600
 
         // Welcome
         Text {
@@ -94,7 +93,7 @@ Item {
             text: qsTr("Welcome")
             font.pixelSize: 38
             font.styleName: "Bold"
-            font.family: "JetBrains Mono"
+            font.family: "JetBrainsMono Nerd Font"
         }
 
 	// Avatar
@@ -138,7 +137,7 @@ Item {
             text: userModel.lastUser
             font.pixelSize: 24
             font.styleName: "ExtraBold"
-            font.family: "JetBrains Mono"
+            font.family: "JetBrainsMono Nerd Font"
         }
 
         // Password
@@ -160,7 +159,7 @@ Item {
                 color: foreground
                 font.pixelSize: 20
                 maximumLength: 14
-                font.family: "JetBrains Mono"
+                font.family: "JetBrainsMono Nerd Font"
                 echoMode: TextInput.Password
                 focus: true
                 selectByMouse: true
@@ -191,7 +190,7 @@ Item {
             color: "#ff0000"
             text: qsTr("Incorrect password")
             font.pixelSize: 12
-            font.family: "JetBrains Mono"
+            font.family: "JetBrainsMono Nerd Font"
             visible: false
         }
     }
@@ -258,8 +257,8 @@ Item {
     // Shutdown button
     Button {
         id: shutdownbutton
-        x: 220
-	      y: 775
+        x: 995
+	      y: 965
 	      z: 1
         width: 25
         height: 25
@@ -311,8 +310,8 @@ Item {
     // Restart Button
     Button {
         id: restartbutton
-        x: 250
-	      y: 775
+        x: 1030
+	      y: 965
       	z: 1
         width: 25
         height: 25
@@ -363,8 +362,8 @@ Item {
     // Suspend button
     Button {
         id: suspendbutton
-        x: 280
-        y: 775
+        x: 1065
+        y: 965
         z: 1
         width: 25
         height: 25

@@ -1,0 +1,7 @@
+[SddmGreeterTheme]
+Name=karch
+Description=karch default theme
+Author=karch
+MainScript=Main.qml
+ConfigFile=theme.conf
+
